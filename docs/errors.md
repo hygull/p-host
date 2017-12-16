@@ -32,3 +32,14 @@ urlpatterns = [
 ```
 
 ### 2
+
+OperationalError (If things are not working, you have to try other methods too)
+
+```
+delete/rename db.sqlite3
+```
+
+```
+python3 manage.py migrate
+```
+
