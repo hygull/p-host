@@ -77,3 +77,8 @@ db.sqlite3	manage.py	pmt_hostel_app	pmt_hostel_site
 ```
 
 ### 5
+
+```
+python manage.py makemigrations pmt_hostel_app
+```
+

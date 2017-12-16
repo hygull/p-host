@@ -26,3 +26,20 @@ Django version 2.0, using settings 'pmt_hostel_site.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
+
+Create model named User 
+
+```
+
+
+```
+
+then do the following
+
+```
+(venv) MacBook-Pro-2:src admin$ python3 manage.py makemigrations pmt_hostel_app
+Migrations for 'pmt_hostel_app':
+  pmt_hostel_app/migrations/0001_initial.py
+    - Create model User
+(venv) MacBook-Pro-2:src admin$ 
+```
