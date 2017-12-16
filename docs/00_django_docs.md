@@ -78,3 +78,12 @@ TEMPLATES = [
 ]
 ```
 
+10. [django-admin and manage.py](https://docs.djangoproject.com/en/2.0/ref/django-admin/)
+
+11. [Packages](https://docs.python.org/3/tutorial/modules.html#tut-packages)
+
+12. [Django settings](https://docs.djangoproject.com/en/2.0/topics/settings/)
+
+13. [URL dispatcher](https://docs.djangoproject.com/en/2.0/topics/http/urls/)
+
+
