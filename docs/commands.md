@@ -82,3 +82,20 @@ db.sqlite3	manage.py	pmt_hostel_app	pmt_hostel_site
 python manage.py makemigrations pmt_hostel_app
 ```
 
+### 6
+
+```
+python3 manage.py sqlmigrate pmt_hostel_app 0001
+```
+
+### 7
+
+```
+python3 manage.py check
+```
+
+### 8
+
+```
+python manage.py createsuperuser
+```

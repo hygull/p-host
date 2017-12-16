@@ -86,4 +86,7 @@ TEMPLATES = [
 
 13. [URL dispatcher](https://docs.djangoproject.com/en/2.0/topics/http/urls/)
 
+14. [Field lookups](https://docs.djangoproject.com/en/2.0/topics/db/queries/#field-lookups-intro)
+
+15. [Accessing related objects](https://docs.djangoproject.com/en/2.0/ref/models/relations/)
 

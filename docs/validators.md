@@ -1,3 +1,6 @@
+### 1 - MinValueValidator, MaxValueValidator
+
+```
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from . import conf
@@ -20,3 +23,4 @@ class User(models.Model):
 
 	def __str__(self):
 		return str(self.id) + " - " + self.full_name + ", " + self.email
+```
