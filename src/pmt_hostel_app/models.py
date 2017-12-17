@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from . import conf
 
+
 class PmtStudent(models.Model):
 	"""
 	User model that describes the structure of fields required to store basic user details

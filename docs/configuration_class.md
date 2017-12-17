@@ -1,4 +1,3 @@
-```
 To include the app in our project, we need to add a reference to its configuration class in the
 
 INSTALLED_APPS setting. The PollsConfig class is in the polls/apps.py file, so its dotted path is
@@ -8,6 +7,7 @@ INSTALLED_APPS setting. The PollsConfig class is in the polls/apps.py file, so i
 INSTALLED_APPS setting. It’ll look like this:
 
 mysite/settings.py
+
 
 ```
 INSTALLED_APPS = [
@@ -19,5 +19,4 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 ```
