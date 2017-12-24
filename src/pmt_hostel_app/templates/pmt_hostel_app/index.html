@@ -1,2 +1,10 @@
-<h1>HOME</h1>
-{{name}}
+{% extends "pmt_hostel_app/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	{% include "pmt_hostel_app/features-brief.html" %}
+
+	{% include "pmt_hostel_app/features.html" %}
+{% endblock %}
+

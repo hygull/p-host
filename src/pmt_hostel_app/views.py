@@ -8,7 +8,36 @@ def demo(request):
 
 def index(request):
 	template = loader.get_template("pmt_hostel_app/index.html")
-	context = {
-		"name": "Rishikesh Agrawani"
-	}
+	context = {}
 	return HttpResponse(template.render(context, request))
+
+def members(request):
+	template = loader.get_template("pmt_hostel_app/members.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+def contact(request):
+	template = loader.get_template("pmt_hostel_app/contact.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+def login(request):
+	template = loader.get_template("pmt_hostel_app/login.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+def register(request):
+	template = loader.get_template("pmt_hostel_app/register.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+def logout(request):
+	template = loader.get_template("pmt_hostel_app/logout.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+def posts(request):
+	template = loader.get_template("pmt_hostel_app/posts.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+

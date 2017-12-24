@@ -1,23 +1,32 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import gettext_lazy as _
 from . import conf
 
 
-class PmtStudent(models.Model):
+class User(models.Model):
 	"""
 	User model that describes the structure of fields required to store basic user details
 	"""
-	full_name = models.CharField(max_length=conf.USER_FULL_NAME_MAX_LENGTH, null=False, blank=False)
-	email = models.EmailField(max_length=conf.USER_EMAIL_MAX_LENGTH, null=False, blank=False, unique=True)
-	contact = models.CharField(max_length=10, null=False, blank=False)
-	dob = models.DateField(null=False, blank=False)
-	password = models.CharField(max_length=20, null=False, blank=False)
-	quote = models.TextField(blank=True, null=True)
-	created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
-	updated_at = models.DateTimeField(auto_now_add=False, auto_now=True)
-	batch = models.IntegerField(default=conf.USER_BATCH_CURRENT_YEAR, validators=[MinValueValidator(conf.USER_BATCH_MIN_YEAR) , MaxValueValidator(conf.USER_BATCH_CURRENT_YEAR)])
-	is_admin = models.BooleanField(default=False)
-	account_confirmed = models.BooleanField(default=False)
+	full_name = models.CharField(max_length=conf.USER_FULL_NAME_MAX_LENGTH, null=False, blank=False, help_text=_("Enter your full name"))
+	email = models.EmailField(max_length=conf.USER_EMAIL_MAX_LENGTH, null=False, blank=False, unique=True, help_text=_("Enter your email, eg. rishikesh0014051992@gmail.com"))
+	contact = models.CharField(max_length=10, null=False, blank=False, help_text=_("Enter your 10 digit mobile number"))
+	dob = models.DateField(null=False, blank=False, help_text=_("Enter your date of birth"))
+	password = models.CharField(max_length=20, null=False, blank=False, help_text=_("Enter your password"))
+	quote = models.TextField(blank=True, null=True, help_text=_("Enter your popular quote, eg. Never give up and try to achieve your goal with passion"))
+	batch = models.IntegerField(default=conf.USER_BATCH_CURRENT_YEAR, validators=[MinValueValidator(conf.USER_BATCH_MIN_YEAR) , MaxValueValidator(conf.USER_BATCH_CURRENT_YEAR)], 
+			help_text=_("From which batch(admission year) you are, eg. " + str(conf.USER_BATCH_CURRENT_YEAR) + ", 2015, 2011 etc."))
+	is_admin = models.BooleanField(default=False, help_text=_("Hi Admin, do you really want to make this person as an admin?"))
+	account_confirmed = models.BooleanField(default=False, help_text=_("User has confirmed his account or not"))
+	created_at = models.DateTimeField(auto_now_add=True, auto_now=False, help_text=_("The time when user registered"))
+	updated_at = models.DateTimeField(auto_now_add=False, auto_now=True, help_text=_("Last time when he updated the details"))
 
 	def __str__(self):
-		return str(self.id) + " - " + self.full_name + ", " + self.email
+		display_text = str(self.id) + " - " + self.full_name + ", " + self.email
+
+		if self.account_confirmed:
+			display_text += ", account has been confirmed (YES)"
+		else:
+			display_text += ", account has not been confirmed (NO)"
+
+		return display_text
