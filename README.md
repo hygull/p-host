@@ -7,3 +7,5 @@ A project containing the source code of a Django based web application that faci
 ### Django version
 
 2.0
+
+[Visit here to see the list of excellent collections of helpful docs](https://github.com/hygull/p-host/tree/master/docs)
