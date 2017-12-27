@@ -1,0 +1,32 @@
+{% extends "pmt_hostel_app/st_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	{% include "pmt_hostel_app/features-brief.html" %}
+
+	{% include "pmt_hostel_app/features.html" %}
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+		.h2-header {
+			font-size: 50px;
+			text-align: left;
+		}
+
+		@media only screen and(max-width: 500px){
+			.h2-header {
+				text-align: center;
+			}
+		}
+		.lead {
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		.p-desc {
+			color: lightgreen;
+		}
+</style>
+
+{% endblock %}

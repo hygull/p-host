@@ -12,4 +12,6 @@ urlpatterns = [
 	path("register/", views.logout, name="logout"),
 	path("login/", views.login, name="login"),
 	path("logout/", views.logout, name="logout"),
+	path("st_index/", views.st_index, name="st_index"),
+	path("st_index2/", views.st_index, name="st_index2"),
 ]

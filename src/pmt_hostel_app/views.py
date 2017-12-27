@@ -41,3 +41,12 @@ def posts(request):
 	context = {}
 	return HttpResponse(template.render(context, request))
 
+def st_index(request):
+	template = loader.get_template("pmt_hostel_app/st_base.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
+# def st_index2(request):
+# 	template = loader.get_template("pmt_hostel_app/st_base.html")
+# 	context = {}
+# 	return HttpResponse(template.render(context, request))

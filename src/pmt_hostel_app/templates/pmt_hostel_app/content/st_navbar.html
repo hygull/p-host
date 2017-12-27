@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!-- Fixed navbar -->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="javascript:void(0)"><img src="{% static 'images/logo-unicef2.png' %}" style="height: 35px" data-toggle="tooltip" title="A safe place for us"> 
+      </a>
+      <a class="navbar-brand" href="javascript:void(0)" style="padding-top: 0px; margin-top: 2px" data-toggle="tooltip" title="Hostel for boys" data-placement="bottom">PMT Boys hostel
+        <br><small id="small_raipur">Raipur, Chhattisgarh<br></small>
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+            <a href="/" data-toggle="tooltip" title="Home" data-placement="bottom">
+              <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true">
+              </i>
+            </a>
+        </li>
+        <li>
+          <a href="/members/" data-toggle="tooltip" title="Members"  data-placement="bottom">
+            <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact/"  data-toggle="tooltip" title="Contact"  data-placement="bottom">
+              <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+            </a>
+        </li>
+
+        <li>
+          <a class="nav-link" href="/posts/"  data-toggle="tooltip" title="All posts"  data-placement="bottom">
+              <i class="fa fa-folder-open" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+            </a>
+        </li>
+       <!--  
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img class="img-responsive img-circle" src="{%static 'images/RishikeshAgrawani2017.png' %}" style="width: 25px; padding: 0; margin: 0; display: inline;">
+           <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li> 
+      -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/register/" data-toggle="tooltip" title="Register"  data-placement="bottom">
+             <i class="fa fa-user-plus" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/login/" data-toggle="tooltip" title="Login"  data-placement="bottom">
+            <i class="fa fa-sign-in" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img class="img-responsive img-circle" src="{%static 'images/RishikeshAgrawani2017.png' %}" style="width: 25px; padding: 0; margin: 0; display: inline;">
+           <span class="caret"></span>
+         </a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile/" data-toggle="tooltip" title="View/Edit profile" data-placement="bottom">Profile</a></li>
+            <li><a href="/posts/" data-toggle="tooltip" title="View/Edit posts" data-placement="bottom">Posts</a></li>
+             
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">PMT Hostel</li>
+            <li><a href="#">Committee</a></li>
+            <li><a href="#">Achievements</a></li>
+          </ul>
+        </li>
+
+        <li class="active"  data-toggle="tooltip" title="Profile" >
+          <a href="/logout/"> 
+            <i class="fa fa-power-off" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true">
+            </i>
+           <span class="sr-only">(current)</span>
+         </a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
