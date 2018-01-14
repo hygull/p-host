@@ -2,7 +2,42 @@
 {% load staticfiles %}
 
 {% block container %}
-	<center>
-		<h1>REGISTER PAGE, COMING SOON</h1>
-	</center>
+	<div class="container">
+		<div class="row">
+			<center>Register</center>
+			<div class="col-md-4 col-md-offset-4">
+				<form action="return sendRegistrationDate(event)" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+				    <div class="form-group">
+				      <label for="fullname">Fullname</label>
+				      <input type="email" class="form-control" id="fullname" placeholder="Enter email" name="fullname">
+				    </div>
+				    <div class="form-group">
+				      <label for="password">Password:</label>
+				      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+				    </div>
+
+				    
+				    
+
+				    <div class="checkbox">
+				      <label><input type="checkbox" name="remember"> Remember me</label>
+				    </div>
+				    <button type="submit" class="btn btn-default">Submit</button>
+			  	</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+</style>
+{% endblock %}
+</style>
+
+{% block js_body %}
+<script type="text/javascript">
+
+</script>
+
 {% endblock %}
