@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-
+from datetime import datetime
 
 def demo(request):
     return HttpResponse("<center><h1>Hello PMT Hostelers</h1></center>")
@@ -28,7 +28,11 @@ def login(request):
 
 def register(request):
 	template = loader.get_template("pmt_hostel_app/register.html")
-	context = {}
+	dt = datetime.now()
+	current_year = int(str(dt)[0:4])
+	batches = [batch for batch in range(1968, current_year-15)]
+	context = {"batches": batches}
+	print("BATCHES, ", batches)
 	return HttpResponse(template.render(context, request))
 
 def logout(request):

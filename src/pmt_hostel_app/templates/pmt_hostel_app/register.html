@@ -2,42 +2,129 @@
 {% load staticfiles %}
 
 {% block container %}
-	<div class="container">
-		<div class="row">
-			<center>Register</center>
-			<div class="col-md-4 col-md-offset-4">
-				<form action="return sendRegistrationDate(event)" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-				    <div class="form-group">
-				      <label for="fullname">Fullname</label>
-				      <input type="email" class="form-control" id="fullname" placeholder="Enter email" name="fullname">
-				    </div>
-				    <div class="form-group">
-				      <label for="password">Password:</label>
-				      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
-				    </div>
+<div class="container">
+	<div class="row">
+	
+	<center>
+		<h3 id="h3"><i class="fa fa-user-plus" aria-hidden="true"></i> I'm the PMT boy</h3>
+	</center>
+	<br>
 
-				    
-				    
+	<div class="col-lg-4 col-lg-offset-4 col-xs-12" id="form">
 
-				    <div class="checkbox">
-				      <label><input type="checkbox" name="remember"> Remember me</label>
-				    </div>
-				    <button type="submit" class="btn btn-default">Submit</button>
-			  	</form>
-			</div>
-		</div>
+		<div class="panel panel-success">
+	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for those who have/had PMT membership"><i class="fa fa-thumbs-up" aria-hidden="true"></i> PMT Boys hostel</div>
+	      <div class="panel-body">
+	      	<form action="" class="form-horizontal" method="POST"  name="form">
+		    	{% csrf_token %}
+		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="fullname"><i class="fa fa-key" aria-hidden="true"></i> Fullname </label>
+				  <input type="fullname" class="form-control" id="fullname" name="fullname" required="true" data-toggle="tooltip" title="Enter your fullname">
+				</div>
+
+		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px">
+				  <label for="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
+				  <input type="email" class="form-control" id="email" name="email" required="true" autofocus="true" data-toggle="tooltip" title="Your email (Google mail) id">
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="contact" data-toggle="tooltip" title="Your mobile number"><i class="fa fa-mobile" aria-hidden="true"></i> Contact</label>
+				  <input type="text" class="form-control" id="contact" name="contact" required="true" pattern="^[789]\d{9}$" title="Contact should be 10 digit indian mobile number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10">
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password">
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="ppic"><i class="fa fa-camera" aria-hidden="true"></i> Profile picture</label>
+
+				  <input type="file" size="50" class="form-control" id="ppic" name="ppic" required="true" data-toggle="tooltip" title="Select your profile picture">
+				</div>
+
+				
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="batch"><i class="fa fa-calendar" aria-hidden="true"></i> Batch</label>
+				  <select class="form-control" id="batch" data-toggle="tooltip" title="Select the year in which you took admission into hostel">
+				  		<option value="">-- SELECT BATCH --</option>
+				  		{% for batch in batches %}
+				  			<option value="{{batch}}">{{batch}}</option>
+				  		{% endfor %} 
+				  </select>
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="password"><i class="fa fa-comments-o" aria-hidden="true"></i> Quote</label>
+				  
+				  <textarea class="form-control" rows="3" id="quote" name="quote" required="true" data-toggle="tooltip" title="Your best quote"></textarea>
+				</div>
+
+				<input type="submit" class="btn btn-primary btn-block" value="Register" id="login" />
+		    </form>
+	      </div>
+	      <div class="panel-footer text-center">
+	      		
+	      		<a href="/login/"><i class="fa fa-sign-in" aria-hidden="true"></i> Already have <b>PMT account</b> </a>
+	      </div>
+	    </div>
+			
 	</div>
+</div>
+</div>
 {% endblock %}
 
 {% block css %}
 <style type="text/css">
+	#email, #password, #fullname, #contact, #batch, #quote{
+		padding: 20px;
+		border: 1px solid black;
+		font-size: 19px;
+	}
+
+	#ppic {
+		border: 1px solid black;
+	}
+	#email:focus, #password:focus, #fullname:focus, #contact:focus, #batch:focus, #quote:focus, #ppic:focus{
+		border: 1px solid blue;
+
+	}
+	#login  {
+		padding: 10px;
+	}
+
+	#header {
+		background-color: #00796b;
+		color:white;
+		font-weight: bold;
+		font-size: 17px;
+	}
+
+	h3#h3, #login {
+		font-family: tahoma;
+		font-weight: bold;
+	}
+	h3#h3 {
+		font-size: 25px;
+	}
 </style>
 {% endblock %}
-</style>
+
 
 {% block js_body %}
-<script type="text/javascript">
-
-</script>
-
+<!-- <script type="text/javascript">
+	function validateData(event) {
+		event.preventDefault();
+		alert("Great")
+		var username = document.forms["form"]["username"].value;
+		var password = document.forms["form"]["password"].value;
+		console.log("Username: " + username)
+		console.log("Password: " + password)
+		if(!username || !password) {
+			alert("Username and password can not be blank")
+			// return true
+		}
+		// return false
+	}
+</script> -->
 {% endblock %}

@@ -1,0 +1,3 @@
+A fix for when your elements move up and/or blur during animations/interactions on Chrome
+
+https://forum.webflow.com/t/a-fix-for-when-your-elements-move-up-and-or-blur-during-animations-interactions-on-chrome/11629/3
