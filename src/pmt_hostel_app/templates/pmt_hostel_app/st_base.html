@@ -31,6 +31,8 @@
     {% block css %}
 
     {% endblock %}
+
+
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
 
@@ -43,6 +45,19 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     
+    <style type="text/css">
+        body {
+              background-color: #eaeaea;
+              background-image: url("http://mediad.publicbroadcasting.net/p/wunc/files/styles/x_large/public/2012Eastclassroom.jpg");
+              /*background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Chhatt%C4%ABsgarhi_ringkonnad.svg/1200px-Chhatt%C4%ABsgarhi_ringkonnad.svg.png");*/
+              
+              background-size: cover;
+              background-position: fixed;
+              background-repeat: repeat;
+              background-blend-mode: overlay;
+        }
+    </style>
+
     {% block head_js %}
 
     {% endblock %}

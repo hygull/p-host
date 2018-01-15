@@ -2,7 +2,91 @@
 {% load staticfiles %}
 
 {% block container %}
+<div class="container">
+	<div class="row">
+	
 	<center>
-		<h1>LOGIN PAGE, COMING SOON</h1>
+		<h3 id="h3"><i class="fa fa-sign-language" aria-hidden="true" ></i> Only for PMT hostlers</h3>
 	</center>
+	<br>
+	<br>
+	<div class="col-lg-4 col-lg-offset-4 col-xs-12" id="form">
+
+		<div class="panel panel-success">
+	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for approved PMT members"><i class="fa fa-thumbs-up" aria-hidden="true"></i> PMT Boys hostel</div>
+	      <div class="panel-body">
+	      	<form action="" class="form-horizontal" method="POST"  name="form">
+		    	{% csrf_token %}
+		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px">
+				  <label for="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
+				  <input type="text" class="form-control" id="email" name="email" required="true" autofocus="true" data-toggle="tooltip" title="Your email (Google mail) id">
+				</div>
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password">
+				</div>
+
+				<input type="submit" class="btn btn-primary btn-block" value="Login" id="login" />
+		    </form>
+	      </div>
+	      <div class="panel-footer text-center">
+	      		<a href="/forgot-passoword/"><i class="fa fa-paint-brush" aria-hidden="true"></i> Forgot password of <b>PMT account</b> </a><br>
+	      		<a href="/register/"><i class="fa fa-user-plus" aria-hidden="true"></i> Currently don't have <b>PMT account</b> </a>
+	      </div>
+	    </div>
+			
+	</div>
+</div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+	#email, #password{
+		padding: 20px;
+		border: 1px solid black;
+		font-size: 19px;
+	}
+	#email:focus, #password:focus{
+		border: 1px solid blue;
+
+	}
+	#login  {
+		padding: 10px;
+	}
+
+	#header {
+		background-color: #00796b;
+		color:white;
+		font-weight: bold;
+		font-size: 17px;
+	}
+
+	h3#h3, #login {
+		font-family: tahoma;
+		font-weight: bold;
+	}
+	h3#h3 {
+		font-size: 25px;
+	}
+</style>
+{% endblock %}
+
+
+{% block js_body %}
+<!-- <script type="text/javascript">
+	function validateData(event) {
+		event.preventDefault();
+		alert("Great")
+		var username = document.forms["form"]["username"].value;
+		var password = document.forms["form"]["password"].value;
+		console.log("Username: " + username)
+		console.log("Password: " + password)
+		if(!username || !password) {
+			alert("Username and password can not be blank")
+			// return true
+		}
+		// return false
+	}
+</script> -->
 {% endblock %}
