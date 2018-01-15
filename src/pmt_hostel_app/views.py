@@ -30,7 +30,7 @@ def register(request):
 	template = loader.get_template("pmt_hostel_app/register.html")
 	dt = datetime.now()
 	current_year = int(str(dt)[0:4])
-	batches = [batch for batch in range(1968, current_year-15)]
+	batches = [batch for batch in range(1968, current_year-15)][::-1]
 	context = {"batches": batches}
 	print("BATCHES, ", batches)
 	return HttpResponse(template.render(context, request))

@@ -19,22 +19,22 @@
 		    	{% csrf_token %}
 		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="fullname"><i class="fa fa-key" aria-hidden="true"></i> Fullname </label>
-				  <input type="fullname" class="form-control" id="fullname" name="fullname" required="true" data-toggle="tooltip" title="Enter your fullname">
+				  <input type="fullname" class="form-control" id="fullname" name="fullname" required="true" data-toggle="tooltip" title="Enter your fullname" placeholder="Raghvendra Pujari">
 				</div>
 
 		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px">
 				  <label for="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
-				  <input type="email" class="form-control" id="email" name="email" required="true" autofocus="true" data-toggle="tooltip" title="Your email (Google mail) id">
+				  <input type="email" class="form-control" id="email" name="email" required="true" autofocus="true" data-toggle="tooltip" title="Your email (Google mail) id" placeholder="raghavendra1992@gmail.com">
 				</div>
 
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="contact" data-toggle="tooltip" title="Your mobile number"><i class="fa fa-mobile" aria-hidden="true"></i> Contact</label>
-				  <input type="text" class="form-control" id="contact" name="contact" required="true" pattern="^[789]\d{9}$" title="Contact should be 10 digit indian mobile number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10">
+				  <input type="text" class="form-control" id="contact" name="contact" required="true" pattern="^[789]\d{9}$" title="Contact should be 10 digit indian mobile number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" placeholder="7975796483">
 				</div>
 
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
-				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password">
+				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password" placeholder="****************">
 				</div>
 
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
@@ -47,7 +47,7 @@
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="batch"><i class="fa fa-calendar" aria-hidden="true"></i> Batch</label>
 				  <select class="form-control" id="batch" data-toggle="tooltip" title="Select the year in which you took admission into hostel">
-				  		<option value="">-- SELECT BATCH --</option>
+				  		<option value="">--- SELECT YOUR BATCH ---</option>
 				  		{% for batch in batches %}
 				  			<option value="{{batch}}">{{batch}}</option>
 				  		{% endfor %} 
@@ -57,7 +57,7 @@
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="password"><i class="fa fa-comments-o" aria-hidden="true"></i> Quote</label>
 				  
-				  <textarea class="form-control" rows="3" id="quote" name="quote" required="true" data-toggle="tooltip" title="Your best quote"></textarea>
+				  <textarea class="form-control" rows="3" id="quote" name="quote" required="true" data-toggle="tooltip" title="Your best quote" placeholder="Do not look backword. Always do hard work with passion to achieve the goal"></textarea>
 				</div>
 
 				<input type="submit" class="btn btn-primary btn-block" value="Register" id="login" />
