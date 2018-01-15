@@ -13,11 +13,11 @@
       <a class="navbar-brand" href="javascript:void(0)"><img src="{% static 'images/cropped-wics-new-logo-dragon-on-white-512-512_Web-Logo-512x512-white-background.png' %}" style="height: 35px; margin: 0; margin-bottom: 5px" data-toggle="tooltip" title="A safe place for us" data-placement="bottom "> 
       </a>
       {% if request.path == "/" %}
-          <a class="navbar-brand" href="javascript:void(0)" style="padding-top: 0px; margin-top: 10px" data-toggle="tooltip" title="Hostel for boys" data-placement="bottom">PMT Boys hostel
+          <a class="navbar-brand" href="javascript:void(0)" style="padding-top: 0px; margin-top: 10px; height: 30px" data-toggle="tooltip" title="Hostel for boys" data-placement="bottom">PMT Boys hostel
             <br><small id="small_raipur">Raipur, Chhattisgarh<br></small>
           </a>
       {% else %}
-          <a class="navbar-brand" href="/" style="padding-top: 0px; margin-top: 10px" data-toggle="tooltip" title="Hostel for boys" data-placement="bottom">PMT Boys hostel
+          <a class="navbar-brand" href="/" style="padding-top: 0px; margin-top: 10px;" data-toggle="tooltip" title="Hostel for boys" data-placement="bottom">PMT Boys hostel
             <br><small id="small_raipur">Raipur, Chhattisgarh<br></small>
           </a>
       {% endif %}
@@ -28,14 +28,14 @@
         {% if "/" == request.path %}
         <li class="active text-center">
             <a href="/" data-toggle="tooltip" title="Home" data-placement="bottom">
-              <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true">
+              <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true">
               </i>
             </a>
         </li>
         {% else %}
         <li class="text-center">
             <a href="/" data-toggle="tooltip" title="Home" data-placement="bottom">
-              <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true">
+              <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px; height:30px" aria-hidden="true">
               </i>
             </a>
         </li>
@@ -45,13 +45,13 @@
         {% if "/members/" == request.path %}
         <li class="active text-center">
           <a href="/members/" data-toggle="tooltip" title="Members"  data-placement="bottom">
-            <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+            <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
         <li class="text-center">
           <a href="/members/" data-toggle="tooltip" title="Members"  data-placement="bottom">
-            <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+            <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px;" aria-hidden="true"></i>
           </a>
         </li>
         {% endif %}
@@ -60,13 +60,13 @@
         {% if "/contact/" == request.path %}
         <li class="active text-center">
           <a class="nav-link" href="/contact/"  data-toggle="tooltip" title="Contact"  data-placement="bottom">
-              <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+              <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
             </a>
         </li>
         {% else %}
         <li class="text-center">
           <a class="nav-link" href="/contact/"  data-toggle="tooltip" title="Contact"  data-placement="bottom">
-              <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+              <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px;" aria-hidden="true"></i>
             </a>
         </li>
         {% endif %}
@@ -75,7 +75,7 @@
         {% if "/posts/" == request.path %}
         <li class="active text-center">
           <a class="nav-link" href="/posts/"  data-toggle="tooltip" title="All posts"  data-placement="bottom">
-              <i class="fa fa-folder-open" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+              <i class="fa fa-folder-open" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
             </a>
         </li>
         {% else %}
@@ -108,7 +108,7 @@
         {% if request.path == "/register/" %}
         <li class="active text-center">
           <a href="/register/" data-toggle="tooltip" title="Register"  data-placement="bottom">
-             <i class="fa fa-user-plus" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+             <i class="fa fa-user-plus" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
@@ -123,7 +123,7 @@
         {% if request.path == "/login/" %}
         <li class="text-center active">
           <a href="/login/" data-toggle="tooltip" title="Login"  data-placement="bottom">
-            <i class="fa fa-sign-in" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
+            <i class="fa fa-sign-in" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
@@ -136,8 +136,9 @@
 
         <!--PROFILE-->
         {% if request.path == "/profile/" or request.path == "/settings/" %}
-        <li class="dropdown text-center">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <li class="dropdown text-center active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="height: 60px" 
+          aria-haspopup="true" aria-expanded="false">
               <img class="img-responsive img-circle" src="{%static 'images/RishikeshAgrawani2017.png' %}" style="width: 25px; padding: 0; margin: 0; display: inline;">
            <span class="caret"></span>
          </a>
@@ -152,8 +153,8 @@
           </ul>
         </li>
         {% else %}
-        <li class="dropdown text-center">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <li class="dropdown text-center" style="height: 60px">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="height:60px">
                 <img class="img-responsive img-circle" src="{%static 'images/RishikeshAgrawani2017.png' %}" style="width: 25px; padding: 0; margin: 0; display: inline;">
              <span class="caret"></span>
            </a>
@@ -172,7 +173,7 @@
         {% if request.path == "/logout/" %}
         <li class="active text-center"  data-toggle="tooltip" title="Logout" >
           <a href="/logout/"> 
-            <i class="fa fa-power-off" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true">
+            <i class="fa fa-power-off" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true">
             </i>
            <span class="sr-only">(current)</span>
          </a>

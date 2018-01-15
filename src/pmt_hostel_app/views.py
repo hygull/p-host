@@ -41,6 +41,11 @@ def posts(request):
 	context = {}
 	return HttpResponse(template.render(context, request))
 
+def profile(request):
+	template = loader.get_template("pmt_hostel_app/profile.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
 def st_index(request):
 	template = loader.get_template("pmt_hostel_app/st_index.html")
 	context = {}
