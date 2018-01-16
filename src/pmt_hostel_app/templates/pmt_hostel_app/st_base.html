@@ -65,9 +65,16 @@
             -webkit-transform: translateZ(0) scale(1.0, 1.0);
             transform: translateZ(0);
         }
-        </style>
+    </style>
 
-    {% block head_js %}
+    <style type="text/css">
+            @media only screen and (max-width: 400px){
+                .navbar-nav li a{
+                        data-placement: "right";
+                }
+            }
+    </style>
+    {% block js_head %}
 
     {% endblock %}
   </head>
@@ -100,7 +107,7 @@
       });
     </script>
 
-    {% block body_js %}
+    {% block js_body %}
 
     {% endblock %}
   </body>

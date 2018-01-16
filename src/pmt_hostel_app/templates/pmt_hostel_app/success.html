@@ -1,0 +1,35 @@
+{% extends "pmt_hostel_app/st_base.html" %}
+{% load staticfiles %}
+
+{% block container %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-xs-12 text-center">
+				<div class="alert alert-success">
+				
+    			  
+				  <h1><i class="fa fa-thumbs-up" aria-hidden="true"></i><br>Success!!!</h1>
+				  <p id="p">Please check your email to confirm registration</p>
+				</div>
+				<br>
+				<a href="https://accounts.google.com/" target="_blank">Click here to check your mail</a>
+			</div>
+		</div>
+	</div>
+		
+
+{% endblock %}
+
+{% block css %}
+	
+<style type="text/css">
+	#p {
+		color: blue;
+	}
+
+	a{
+		font-size: 20px;
+	}
+</style>
+
+{% endblock %}

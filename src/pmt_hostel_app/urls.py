@@ -1,6 +1,6 @@
 # URLconf file named urls.py
 
-from django.urls import path
+from django.urls import path, re_path, include
 from . import views
 
 
@@ -15,4 +15,8 @@ urlpatterns = [
 	path("logout/", views.logout, name="logout"),
 	path("", views.st_index, name="st_index"),
 	path("st_index2/", views.st_index, name="st_index2"),
+	path("success/", views.success, name="success"),
+	path("error/", views.error, name="error"),
+
+	re_path(r'^api-auth/', include('rest_framework.urls')),
 ]
