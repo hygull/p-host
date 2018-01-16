@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
+from django.shortcuts import redirect
 from datetime import datetime
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -18,30 +19,53 @@ def index(request):
 
 def members(request):
 	template = loader.get_template("pmt_hostel_app/members.html")
-	context = {}
+	users = User.objects.all()
+	context = {"users": users}
 	return HttpResponse(template.render(context, request))
+
+def pmt_member(request, id):
+	try:
+		print(id, type(id))
+		template = loader.get_template("pmt_hostel_app/pmtmember.html")
+		user = User.objects.get(id=int(id))
+		context = {"user": user}
+		return HttpResponse(template.render(context, request))
+	except User.DoesNotExist:
+		return redirect("/error/")
 
 def contact(request):
 	template = loader.get_template("pmt_hostel_app/contact.html")
 	context = {}
 	return HttpResponse(template.render(context, request))
 
+@api_view(['GET', 'POST'])
 def login(request):
-	template = loader.get_template("pmt_hostel_app/login.html")
-	context = {}
-	return HttpResponse(template.render(context, request))
+	if request.method == "GET":
+		template = loader.get_template("pmt_hostel_app/login.html")
+		context = {}
+		return HttpResponse(template.render(context, request))
+	elif request.method == 'POST':
+		print("LOGIN DATA: ", request.data)
+		try:
+			user = User.objects.get(**request.data)
+			print("GOT user as ", user.fullname)
+			return Response({"message": "Successfully logged in", "status": 200, "usedId": user.pk, "email": user.email}, status=200)
+		except User.DoesNotExist:
+			print("Could not found user")
+			return Response({"message": "User does not exist", "status": 400}, status=400)
 
 @api_view(['GET', 'POST'])
 @parser_classes((JSONParser,MultiPartParser, FileUploadParser))
 def register(request):
 	if request.method == "POST":
 		print("POST request(Registration)")
-		print(request.POST)
-		print(request.data) # True
-		print(request.FILES)
+		# print(request.POST)
+		print("REGISTER DATA: ", request.data) # True
+		# print(request.FILES)
 
 		del request.data["ppic"]
 		print("After removal: ", request.data)
+
 		user = User(**request.data)
 		user.save()
 		print(user, user.id)

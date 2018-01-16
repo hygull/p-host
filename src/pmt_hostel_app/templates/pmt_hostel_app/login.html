@@ -15,7 +15,7 @@
 		<div class="panel panel-success">
 	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for approved PMT members"><i class="fa fa-thumbs-up" aria-hidden="true"></i> PMT Boys hostel</div>
 	      <div class="panel-body">
-	      	<form action="" class="form-horizontal" method="POST"  name="form">
+	      	<form action="" class="form-horizontal" method="POST"  name="form" onsubmit="return sendLoginData(event)">
 		    	{% csrf_token %}
 		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px">
 				  <label for="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
@@ -74,19 +74,49 @@
 
 
 {% block js_body %}
-<!-- <script type="text/javascript">
-	function validateData(event) {
+<script type="text/javascript">
+	function sendLoginData(event) {
 		event.preventDefault();
-		alert("Great")
-		var username = document.forms["form"]["username"].value;
+		alert("Great");
+		var email = document.forms["form"]["email"].value;
 		var password = document.forms["form"]["password"].value;
-		console.log("Username: " + username)
+		console.log("Email: " + email)
 		console.log("Password: " + password)
-		if(!username || !password) {
-			alert("Username and password can not be blank")
-			// return true
-		}
-		// return false
+		
+		fetch("/login/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json;"
+			},
+			body: JSON.stringify({
+				email: email.trim(),
+				password: password.trim(),
+
+			})
+		})
+		.then(response => response.json())
+		.then(response => {
+			console.log("Login response: ", response)
+			alert(response.message)
+
+			if(response.status == 200) {
+				localStorage.setItem("pmtBoysHostelData", JSON.stringify({
+					email: response.email,
+					userId: response.userId
+				}))
+
+				location.href = "/success/"
+			}
+			else {
+				location.href = "/error/"
+				return false
+			}
+			return true
+		})
+		.catch(error => {
+			console.log("Login error: ", error)
+			return false
+		})
 	}
-</script> -->
+</script>
 {% endblock %}

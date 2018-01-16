@@ -8,6 +8,7 @@ urlpatterns = [
 	# path("", views.index, name="index"),
 	path("contact/", views.contact, name="contact"),
 	path("members/", views.members, name="members"),
+	path("pmt-member/<int:id>/", views.pmt_member, name="pmt-member"),
 	path("posts/", views.posts, name="posts"),
 	path("register/", views.register, name="logout"),
 	path("profile/", views.profile, name="profile"),

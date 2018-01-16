@@ -2,7 +2,50 @@
 {% load staticfiles %}
 
 {% block container %}
-	<center>
-		<h1>LOGOUT PAGE, COMING SOON</h1>
-	</center>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-xs-12 text-center">
+				<div class="alert alert-success">
+				
+    			  
+				  <h1><i class="fa fa-thumbs-up" aria-hidden="true"></i><br>You are successfully logged out</h1>
+				  <a href="/login/"> Login again</a>
+				</div>
+				<br>
+				
+			</div>
+		</div>
+	</div>
+		
+
+{% endblock %}
+
+{% block css %}
+	
+<style type="text/css">
+
+	a {
+		font-size: 20px;
+	}
+</style>
+
+{% endblock %}
+
+{% block js_body %} 
+<script type="text/javascript">
+	alert(localStorage.getItem("pmtBoysHostelData"))
+	if(localStorage.getItem("pmtBoysHostelData")) {
+		localStorage.removeItem("pmtBoysHostelData");
+		// location.href = "/logout/"
+		document.getElementById("pmt-profile").style.display = "none";
+		document.getElementById("pmt-profile").style.display = "none";
+		document.getElementById("pmt-logout").style.display = "none";
+		document.getElementById("pmt-login").style.display = "block";
+		document.getElementById("pmt-register").style.display = "block";
+	} else {
+		alert("My dear, you are already logged out");
+		location.href = "/"
+	}
+</script>
+	
 {% endblock %}

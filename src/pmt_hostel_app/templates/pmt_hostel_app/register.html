@@ -37,17 +37,18 @@
 				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password" placeholder="****************">
 				</div>
 
-				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				<!-- <div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="ppic"><i class="fa fa-camera" aria-hidden="true"></i> Profile picture</label>
 
 				  <input type="file" size="50" class="form-control" id="ppic" name="ppic" required="true" data-toggle="tooltip" title="Select your profile picture">
-				</div>
+				</div> -->
 
 				
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="batch"><i class="fa fa-calendar" aria-hidden="true"></i> Batch</label>
 				  <select class="form-control" id="batch" data-toggle="tooltip" title="Select the year in which you took admission into hostel">
-				  		<option value="">--- SELECT YOUR BATCH ---</option>
+				  		<option value="" selected="true">--- SELECT YOUR BATCH ---</option>
+				  		
 				  		{% for batch in batches %}
 				  			<option value="{{batch}}">{{batch}}</option>
 				  		{% endfor %} 
@@ -167,13 +168,13 @@
 				"Content-Type": "application/json; multipart/form-data; */*"
 			},
 			body: JSON.stringify({ // JSON.stringify() is required
-				contact: contact,
-				fullname: fullname,
-				email: email,
-				password: password,
-				quote: quote,
-				batch: batch,
-				ppic: ppic,
+				contact: contact.trim(),
+				fullname: fullname.trim(),
+				email: email.trim(),
+				password: password.trim(),
+				quote: quote.trim(),
+				batch: batch.trim(),
+				ppic: ppic.trim(),
 				
 			}),
 			// body: formData
