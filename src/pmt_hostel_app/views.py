@@ -20,7 +20,7 @@ def index(request):
 def members(request):
 	template = loader.get_template("pmt_hostel_app/members.html")
 	users = User.objects.all()
-	context = {"users": users}
+	context = {"users": users, "total_users": len(users)}
 	return HttpResponse(template.render(context, request))
 
 def pmt_member(request, id):
@@ -57,27 +57,30 @@ def login(request):
 @api_view(['GET', 'POST'])
 @parser_classes((JSONParser,MultiPartParser, FileUploadParser))
 def register(request):
-	if request.method == "POST":
-		print("POST request(Registration)")
-		# print(request.POST)
-		print("REGISTER DATA: ", request.data) # True
-		# print(request.FILES)
+	try:
+		if request.method == "POST":
+			print("POST request(Registration)")
+			# print(request.POST)
+			print("REGISTER DATA: ", request.data) # True
+			# print(request.FILES)
 
-		del request.data["ppic"]
-		print("After removal: ", request.data)
+			# del request.data["ppic"]
+			print("After removal: ", request.data)
 
-		user = User(**request.data)
-		user.save()
-		print(user, user.id)
-		return Response({"status": 200, "message": "Registration successful"}, status=200)
-	elif request.method == "GET":
-		template = loader.get_template("pmt_hostel_app/register.html")
-		dt = datetime.now()
-		current_year = int(str(dt)[0:4])
-		batches = [batch for batch in range(1968, current_year)][::-1]
-		context = {"batches": batches}
-		print("BATCHES, ", batches)
-		return HttpResponse(template.render(context, request))
+			user = User(**request.data)
+			user.save()
+			print(user, user.id)
+			return Response({"status": 200, "message": "Registration successful"}, status=200)
+		elif request.method == "GET":
+			template = loader.get_template("pmt_hostel_app/register.html")
+			dt = datetime.now()
+			current_year = int(str(dt)[0:4])
+			batches = [batch for batch in range(1968, current_year)][::-1]
+			context = {"batches": batches}
+			print("BATCHES, ", batches)
+			return HttpResponse(template.render(context, request))
+	except:
+		return Response({"status": 400, "message": "Server side error"}, status=400)
 
 def logout(request):
 	template = loader.get_template("pmt_hostel_app/logout.html")

@@ -7,29 +7,35 @@
 	<div class="row">
 		<div class="col-lg-12 col-xs-12">
 			<center>
-					<h3 id="pmt">PMT Boys hostel, Raipur</h3>
-					<small id="span-brief">Details of registered members</small>
+					<h3 id="pmt"><i class="fa fa-institution" aria-hidden="true"></i> PMT Boys hostel, Raipur</h3>
+					<small id="span-brief"><i class="fa fa-vcard" aria-hidden="true"></i> Details of registered</small> <small><b>{{ total_users }} </b>active member{% if total_users > 1 %}s{% endif %}</small>
 			</center>
 			<hr>
-			{% for user in users %}
-			<div class="card card-1">
-				<center>
-					<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
-				</center>
-				<hr>
-				<center>
+			{% if users %}
+				{% for user in users %}
+				<div class="card card-1">
+					<center>
+						<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+					</center>
+					<hr>
+					<center>
+						
+						<span class="span-name"> {{ user.fullname }}</span><br>
+						<span class="span-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>   {{ user.email }} </span><br>
+						<span class="span-contact"><i class="fa fa-mobile" aria-hidden="true"></i> {{ user.contact }}</span><hr>
+						 <a href="/pmt-member/{{ user.pk }}" class="btn btn-success a-details-link" style="width: 95%; font-family: tahoma"><i class="fa fa-eye" aria-hidden="true"></i> View details</a>
+					</center>
 					
-					<span class="span-name"> {{ user.fullname }}</span><br>
-					<span class="span-email">{{ user.email }} </span><br>
-					<span class="span-contact">{{ user.contact }}</span><hr>
-					 <a href="/pmt-member/{{ user.pk }}" class="btn btn-success a-details-link" style="width: 95%">View details</a>
-				</center>
-				
-			</div>
-			{% endfor %}
+				</div>
+				{% endfor %}
+			{% else %}
+				<h1>Currently no activated/authorized users!!!</h1>
+			{% endif %}
 		</div>
+
 	</div>
-	
+	<br>
+	<hr>
 </div>
 {% endblock %}
 

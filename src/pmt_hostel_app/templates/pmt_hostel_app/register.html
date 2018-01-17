@@ -128,7 +128,7 @@
 		// var batchElem = document.getElementById("batch") /* It can be also used  */
 		var batch = batchElem.options[batchElem.selectedIndex].value;
 
-		var ppic = document.forms["form"]["ppic"].files[0];
+		// var ppic = document.forms["form"]["ppic"].files[0];
 		
 		// var photo = document.getElementById("ppic")
 		// var file = photo.files[0];
@@ -142,7 +142,7 @@
 		console.log("Batch: ", batch)
 		console.log("Quote: ", quote)
 
-		console.log(ppic)
+		// console.log(ppic)
 		// var reader = new FileReader()
 		// reader.onloadend = function () {
   //  			 document.getElementById("img").src = reader.result;
@@ -174,7 +174,7 @@
 				password: password.trim(),
 				quote: quote.trim(),
 				batch: batch.trim(),
-				ppic: ppic.trim(),
+				// ppic: ppic.trim(),
 				
 			}),
 			// body: formData
@@ -199,8 +199,8 @@
 </script>
 
 <script type="text/javascript">
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-  $('#batch').selectpicker('mobile');
-}
+// 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+//   $('#batch').selectpicker('mobile');
+// }
 </script>
 {% endblock %}
