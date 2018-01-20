@@ -2,7 +2,172 @@
 {% load staticfiles %}
 
 {% block container %}
-	<center>
-		<h1>PROFILE PAGE, COMING SOON</h1>
-	</center>
+<div class="container">
+	{% verbatim %}
+	<div class="row" ng-app="myApp" ng-controller="myCtrl">
+		<div class="col-lg-4 col-lg-offset-4 col-xs-12">
+			<center>
+					<h3><i class="fa fa-snowflake-o" aria-hidden="true"></i> Professional PMT profile</h3>
+					<!-- <h4 id="span-brief"><i class="fa fa-object-group" aria-hidden="true"></i> Chhattisgarh</h4> -->
+
+					
+			</center>
+			<hr>
+			<div class="card card-1">
+				<center>
+					<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> <br>
+					<small><i class="fa fa-comments-o" aria-hidden="true"></i>  Quote &raquo; <span id="span-quote">"{{user.quote}}"</span></small>
+				</center>
+				<hr>
+				<center>
+					
+					<span class="span-name"><i class="fa fa-address-book-o" aria-hidden="true"></i> {{ user.fullname }}</span><br>
+					<span class="span-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>  {{ user.email }} </span><br>
+					<span class="span-contact"><i class="fa fa-mobile" aria-hidden="true"></i> +91 {{ user.contact }}</span><br/>
+					<hr>
+					<span class="span-batch">Member of <b>{{user.batch}}</b> bacth</span>
+				</center>
+				<br>
+
+				<center>
+				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br>
+					<p id="message">Edit profile to add your address, profile pic etc.</p>	
+				</center>
+			</div>
+			
+			
+		</div>
+		<!-- 	<div class="col-lg-3 col-lg-offset-1 col-xs-12">
+				<hr>
+				<p>
+					<b>Note:</b><br> Members need to login to<hr>
+					1) update their details.<br>
+					2) send posts.<br>
+					3) upload profile pic.<br>
+					4) update email.<br>
+					5) update username.<br>
+					6) upate designation.<br>
+					7) update contact number.<br>
+					<br>
+					<hr>
+				</p>
+			</div> -->
+
+	</div>
+	{% endverbatim %}
+</div>
+{% endblock %}
+
+
+
+{% block css %}
+<style type="text/css">
+
+	small {
+		color: green;
+		font-family: tahoma;
+	}
+
+	h4#span-brief {
+		color: green;
+	}	
+
+	span.span-name, span.span-email, span.span-contact, #span-quote {
+		font-family: tahoma;
+		
+	}
+
+	span.span-name {
+		color: black;
+		font-weight: bold;
+	}
+
+	span.contact {
+		color:#ff3;
+	}
+
+	span#span-quote {
+		color: black;
+	}
+
+	a#explore {
+		font-family: tahoma;
+		font-weight: bold;
+		
+	}
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#message {
+	font-family: tahoma;
+	font-style: italic;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block js_body %}
+<script type="text/javascript">
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope, $http) {
+		console.log("Entered")
+		if(localStorage.getItem("pmtBoysHostelData"))
+		{	
+				console.log(localStorage.getItem("pmtBoysHostelData"))
+	 			try {
+	 				var data = JSON.parse(localStorage.getItem("pmtBoysHostelData")) 
+	 				console.log("USER DATA PROFILE ", data)
+				    $http({
+				    	url: "/api/pmt-member/" + data.email + "/",	// Don't forget to use /en/ otherwise GET method not allowed
+				    	method: "POST",
+				    	headers: {
+				    		'Content-Type': 'application/x-www-form-urlencoded',
+				    		
+				    	}
+				    	
+				    })
+					.then(function(response) {
+						  console.log("Got data")
+					      $scope.user = response.data.user;
+					      // if(!$scope.studentData.length) {
+					      // 		document.getElementById("data-not-found-part").style.display = "block";
+					      // 		document.getElementById("data-part").style.display = "none";
+					      // }
+					      console.log($scope.user)
+					 });
+				} catch(err) {
+					console.log(err)
+			  		alert("Error occured while processing request" + err);
+			  		location.href = "/";
+				}
+		} else {
+			location.href = "/login/"
+		}
+	})
+</script>
+
+{% endblock %}
+
+
+{% block js_head %}
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 {% endblock %}

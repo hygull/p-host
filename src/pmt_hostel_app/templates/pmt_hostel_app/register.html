@@ -182,11 +182,12 @@
 		.then(response => response.json())
 		.then(response => {
 			console.log(response)
+			alert(response.message)
 			if(response.status == 200) {
 				location.href = "/success/"
 				return true
 			} else {
-				location.href = "/error/"
+				location.reload()
 				return false
 			}
 			

@@ -132,3 +132,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "pmt_hostel_app", "static", "files")
 ]
 
+
+# Email settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rishikesh0014051992@gmail.com'
+EMAIL_HOST_PASSWORD = 'Hygull_67'

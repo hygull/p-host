@@ -100,15 +100,17 @@
 			alert(response.message)
 
 			if(response.status == 200) {
-				localStorage.setItem("pmtBoysHostelData", JSON.stringify({
-					email: response.email,
-					userId: response.userId
-				}))
+				localStorage.clear()
+				var obj = {
+					email: response.email
+				}
+				localStorage.setItem("pmtBoysHostelData", JSON.stringify(obj))
 
-				location.href = "/success/"
+				alert(localStorage.getItem("pmtBoysHostelData"))
+				location.href = "/profile/"
 			}
 			else {
-				location.href = "/error/"
+				location.reload()
 				return false
 			}
 			return true
