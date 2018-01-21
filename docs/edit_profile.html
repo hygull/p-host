@@ -1,0 +1,224 @@
+{% extends "pmt_hostel_app/st_base.html" %}
+{% load staticfiles %}
+
+{% block container %}
+<div class="container">
+	<div class="row">
+	
+	<center>
+		<h3 id="h3"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</h3>
+	</center>
+	<br>
+
+	<div class="col-lg-4 col-lg-offset-4 col-xs-12" id="form">
+
+		<div class="panel panel-success">
+	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for those who have/had PMT membership"><i class="fa fa-thumbs-up" aria-hidden="true"></i> PMT Boys hostel</div>
+	      <div class="panel-body">
+	      	<form  class="form-horizontal" name="form" onsubmit="return sendUpdateData(event)" enctype="multipart/form-data"  method="POST" >
+		    	{% csrf_token %}
+		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="fullname"><i class="fa fa-key" aria-hidden="true"></i> Fullname </label>
+				  <input type="fullname" class="form-control" id="fullname" name="fullname" required="true" data-toggle="tooltip" title="Enter your fullname" placeholder="Raghvendra Pujari" autofocus="true" value="{{user.fullname}}">
+				</div>
+
+		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px">
+				  <label for="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label data-toggle="tooltip" title="Your email (Google mail) id" >
+				  <input type="email" class="form-control" id="email" name="email" required="true"  placeholder="raghavendra1992@gmail.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" title="Your email should follow the exact google mail format" value="{{user.email}}" readonly="true">
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="contact" data-toggle="tooltip" title="Your mobile number"><i class="fa fa-mobile" aria-hidden="true"></i> Contact</label>
+				  <input type="text" class="form-control" id="contact" name="contact" required="true" pattern="^[789]\d{9}$" title="Contact should be 10 digit indian mobile number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10" placeholder="7975796483" value="{{user.contact}}">
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password" placeholder="****************" value="{{user.password}}">
+				</div>
+
+				<!-- <div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="ppic"><i class="fa fa-camera" aria-hidden="true"></i> Profile picture</label>
+
+				  <input type="file" size="50" class="form-control" id="ppic" name="ppic" required="true" data-toggle="tooltip" title="Select your profile picture">
+				</div> -->
+
+				
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="batch"><i class="fa fa-calendar" aria-hidden="true"></i> Batch</label>
+				  <select class="form-control" id="batch" data-toggle="tooltip" title="Select the year in which you took admission into hostel">
+				  		<option value="" selected="true">--- SELECT YOUR BATCH ---</option>
+				  		
+				  		{% for batch in batches %}
+				  			{% if batch == user.batch %}
+				  			<option value="{{batch}}" selected="true">{{batch}}</option>
+				  			{% else %}
+				  			<option value="{{batch}}">{{batch}}</option>
+				  			{% endif %}
+				  		{% endfor %} 
+				  </select>
+				</div>
+
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="password"><i class="fa fa-comments-o" aria-hidden="true"></i> Quote</label>
+				  
+				  <textarea class="form-control" rows="3" id="quote" name="quote" required="true" data-toggle="tooltip" title="Your best quote" placeholder="Do not look backword. Always do hard work with passion to achieve the goal" >{{user.quote}}</textarea>
+				</div>
+
+				<input type="submit" class="btn btn-primary btn-block" value="Save" id="login" />
+				<hr>
+				
+		    </form>
+	      </div>
+	      
+	    </div>
+		
+	   </div><!--col closed-->
+	   <div class="col-lg-offset-4 col-lg-4 col-xs-12">
+			<p class="info"><i class="fa fa-commenting" aria-hidden="true"></i> For now, you cannot edit your email id</p>
+				<p class="info"><i class="fa fa-commenting" aria-hidden="true"></i> This functionality will turned on in future</p>
+				<hr>
+		</div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+	#email, #password, #fullname, #contact, #batch, #quote{
+		padding: 20px;
+		border: 1px solid black;
+		font-size: 19px;
+	}
+
+	#ppic {
+		border: 1px solid black;
+	}
+	#email:focus, #password:focus, #fullname:focus, #contact:focus, #batch:focus, #quote:focus, #ppic:focus{
+		border: 1px solid blue;
+
+	}
+	#login  {
+		padding: 10px;
+	}
+
+	#header {
+		background-color: #00796b;
+		color:white;
+		font-weight: bold;
+		font-size: 17px;
+	}
+
+	h3#h3, #login {
+		font-family: tahoma;
+		font-weight: bold;
+	}
+	h3#h3 {
+		font-size: 25px;
+	}
+
+	.info {
+		font-family: tahoma;
+		color: green;
+		padding-left: 10px;
+	}
+</style>
+{% endblock %}
+
+
+{% block js_body %}
+<script type="text/javascript">
+	function sendUpdateData(event) {
+		if(!localStorage.getItem("pmtBoysHostelData")) {
+			location.href = "/login/"
+		}
+		event.preventDefault();
+		alert("Successfully got updated data")
+		
+		
+		var fullname = document.forms["form"]["fullname"].value;
+		var password = document.forms["form"]["password"].value;
+		var email = document.forms["form"]["email"].value;
+		var contact = document.forms["form"]["contact"].value;
+		var quote = document.forms["form"]["quote"].value;
+		var batchElem = document.forms["form"]["batch"]
+		// var batchElem = document.getElementById("batch") /* It can be also used  */
+		var batch = batchElem.options[batchElem.selectedIndex].value;
+		// var ppic = document.forms["form"]["ppic"].files[0];
+		
+		// var photo = document.getElementById("ppic")
+		// var file = photo.files[0];
+	 //    console.log("File name: " + file.name);
+	 //    console.log("File size: " + file.fileSize);
+
+		console.log("Fullname: " + fullname)
+		console.log("Password: " + password)
+		console.log("Email: " + email)
+		console.log("Contact: " + contact)
+		console.log("Batch: ", batch)
+		console.log("Quote: ", quote)
+
+		// console.log(ppic)
+		// var reader = new FileReader()
+		// reader.onloadend = function () {
+  //  			 document.getElementById("img").src = reader.result;
+  // 		}
+			
+		// if (ppic) {
+		//     reader.readAsDataURL(ppic);
+		// } else {
+		//     document.getElementById("img").src = "";
+		// }
+
+		// var formData = new FormData();
+		// var fileField = document.querySelector("input[type='file']");
+
+		// formData.append('username', 'abc123');
+		// formData.append('avatar', fileField.files[0]);
+
+		// console.log("DATA=> ", formData)
+
+		fetch("/register/", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json; multipart/form-data; */*"
+			},
+			body: JSON.stringify({ // JSON.stringify() is required
+				contact: contact.trim(),
+				fullname: fullname.trim(),
+				email: email.trim(),
+				password: password.trim(),
+				quote: quote.trim(),
+				batch: batch.trim(),
+				emailLocalStoraged: JSON.parse(localStorage.getItem("pmtBoysHostelData")).email
+				// ppic: ppic.trim(),
+			}),
+			// body: formData
+		})
+		.then(response => response.json())
+		.then(response => {
+			console.log(response)
+			alert(response.message)
+			if(response.status == 200) {
+				location.href = "/profile/"
+				return true
+			} else {
+				location.reload()
+				return false
+			}
+			
+		})
+		.catch(err => {
+			console.log("Error")
+			return false
+		})
+	}
+</script>
+
+<script type="text/javascript">
+// 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+//   $('#batch').selectpicker('mobile');
+// }
+</script>
+{% endblock %}

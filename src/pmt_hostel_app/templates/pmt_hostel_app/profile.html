@@ -15,7 +15,12 @@
 			<hr>
 			<div class="card card-1">
 				<center>
-					<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> <br>
+					
+						<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" ng-show="user.ppic === ''"/>
+				
+						<img src="/media/{{ user.ppic }}" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" alt="{{user.email}}" ng-show="user.ppic !== ''"/>
+					
+					<br>
 					<small><i class="fa fa-comments-o" aria-hidden="true"></i>  Quote &raquo; <span id="span-quote">"{{user.quote}}"</span></small>
 				</center>
 				<hr>
@@ -30,7 +35,7 @@
 				<br>
 
 				<center>
-				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br>
+				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br><br>
 					<p id="message">Edit profile to add your address, profile pic etc.</p>	
 				</center>
 			</div>
@@ -166,7 +171,6 @@
 </script>
 
 {% endblock %}
-
 
 {% block js_head %}
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>

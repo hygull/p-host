@@ -19,6 +19,7 @@ class User(models.Model):
 	is_admin = models.BooleanField(default=False, help_text=_("Hi Admin, do you really want to make this person as an admin?"))
 	is_active = models.BooleanField(default=False, help_text=_("Hi Admin, do you really want to make this person a PMT member?"))
 	account_confirmed = models.BooleanField(default=False, help_text=_("User has confirmed his account or not"))
+	ppic = models.CharField(max_length=1000, default="", blank=True, help_text=_("Name of pic inside media root"))
 	created_at = models.DateTimeField(auto_now_add=True, auto_now=False, help_text=_("The time when user registered"))
 	updated_at = models.DateTimeField(auto_now_add=False, auto_now=True, help_text=_("Last time when he updated the details"))
 

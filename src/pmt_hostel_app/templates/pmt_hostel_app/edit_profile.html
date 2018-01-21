@@ -10,12 +10,22 @@
 	</center>
 	<br>
 
-	<div class="col-lg-4 col-lg-offset-4 col-xs-12" id="form">
+	<div class="col-lg-4 col-lg-offset-4 col-xs-12 col-md-4 col-md-offset-4" id="form">
 
 		<div class="panel panel-success">
-	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for those who have/had PMT membership"><i class="fa fa-thumbs-up" aria-hidden="true"></i> PMT Boys hostel</div>
+	      <div class="panel-heading text-center" id="header" data-toggle="tooltip" title="Only for those who have/had PMT membership">
+	      	<center>
+	      	{% if user.ppic %}
+	      	<img src="/media/{{user.ppic}}" style="height:50px;" class="img img-responsive img-circle">
+	      	{% else %}
+	      		<img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-256.png" style="height:50px;" class="img img-responsive img-circle">
+	      	{% endif %}
+	      </center>
+	      	<i class="fa fa-thumbs-up" aria-hidden="true"></i> {{user.fullname}}<br>
+	      	
+	      </div>
 	      <div class="panel-body">
-	      	<form  class="form-horizontal" name="form" onsubmit="return sendUpdateData(event)" enctype="multipart/form-data"  method="POST" >
+	      	<form action="/register/" class="form-horizontal" name="form" enctype="multipart/form-data"  method="POST" >
 		    	{% csrf_token %}
 		    	<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
 				  <label for="fullname"><i class="fa fa-key" aria-hidden="true"></i> Fullname </label>
@@ -37,11 +47,11 @@
 				  <input type="password" class="form-control" id="password" name="password" required="true" data-toggle="tooltip" title="PMT account's password" placeholder="****************" value="{{user.password}}">
 				</div>
 
-				<!-- <div class="form-group" style="margin-left: 1px; margin-right: 1px" >
-				  <label for="ppic"><i class="fa fa-camera" aria-hidden="true"></i> Profile picture</label>
+				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
+				  <label for="ppic"><i class="fa fa-camera" aria-hidden="true"></i> Profile picture <span id="pic-msg">(Select to update your pic)</span></label>
 
-				  <input type="file" size="50" class="form-control" id="ppic" name="ppic" required="true" data-toggle="tooltip" title="Select your profile picture">
-				</div> -->
+				  <input type="file" size="50" class="form-control" id="ppic" name="ppic"        data-toggle="tooltip" title="Select new profile picture" value="">
+				</div>
 
 				
 				<div class="form-group" style="margin-left: 1px; margin-right: 1px" >
@@ -64,7 +74,7 @@
 				  
 				  <textarea class="form-control" rows="3" id="quote" name="quote" required="true" data-toggle="tooltip" title="Your best quote" placeholder="Do not look backword. Always do hard work with passion to achieve the goal" >{{user.quote}}</textarea>
 				</div>
-
+				<input type="text" name="real_email" value="{{user.email}}" style="display: none">
 				<input type="submit" class="btn btn-primary btn-block" value="Save" id="login" />
 				<hr>
 				
@@ -123,101 +133,19 @@
 		color: green;
 		padding-left: 10px;
 	}
+
+	#pic-msg {
+		font-family: tahoma;
+		color: green;	
+	}
 </style>
 {% endblock %}
 
 
 {% block js_body %}
-<script type="text/javascript">
-	function sendUpdateData(event) {
-		if(!localStorage.getItem("pmtBoysHostelData")) {
-			location.href = "/login/"
-		}
-		event.preventDefault();
-		alert("Successfully got updated data")
-		
-		
-		var fullname = document.forms["form"]["fullname"].value;
-		var password = document.forms["form"]["password"].value;
-		var email = document.forms["form"]["email"].value;
-		var contact = document.forms["form"]["contact"].value;
-		var quote = document.forms["form"]["quote"].value;
-		var batchElem = document.forms["form"]["batch"]
-		// var batchElem = document.getElementById("batch") /* It can be also used  */
-		var batch = batchElem.options[batchElem.selectedIndex].value;
-		// var ppic = document.forms["form"]["ppic"].files[0];
-		
-		// var photo = document.getElementById("ppic")
-		// var file = photo.files[0];
-	 //    console.log("File name: " + file.name);
-	 //    console.log("File size: " + file.fileSize);
-
-		console.log("Fullname: " + fullname)
-		console.log("Password: " + password)
-		console.log("Email: " + email)
-		console.log("Contact: " + contact)
-		console.log("Batch: ", batch)
-		console.log("Quote: ", quote)
-
-		// console.log(ppic)
-		// var reader = new FileReader()
-		// reader.onloadend = function () {
-  //  			 document.getElementById("img").src = reader.result;
-  // 		}
-			
-		// if (ppic) {
-		//     reader.readAsDataURL(ppic);
-		// } else {
-		//     document.getElementById("img").src = "";
-		// }
-
-		// var formData = new FormData();
-		// var fileField = document.querySelector("input[type='file']");
-
-		// formData.append('username', 'abc123');
-		// formData.append('avatar', fileField.files[0]);
-
-		// console.log("DATA=> ", formData)
-
-		fetch("/register/", {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json; multipart/form-data; */*"
-			},
-			body: JSON.stringify({ // JSON.stringify() is required
-				contact: contact.trim(),
-				fullname: fullname.trim(),
-				email: email.trim(),
-				password: password.trim(),
-				quote: quote.trim(),
-				batch: batch.trim(),
-				emailLocalStoraged: JSON.parse(localStorage.getItem("pmtBoysHostelData")).email
-				// ppic: ppic.trim(),
-			}),
-			// body: formData
-		})
-		.then(response => response.json())
-		.then(response => {
-			console.log(response)
-			alert(response.message)
-			if(response.status == 200) {
-				location.href = "/profile/"
-				return true
-			} else {
-				location.reload()
-				return false
-			}
-			
-		})
-		.catch(err => {
-			console.log("Error")
-			return false
-		})
-	}
-</script>
 
 <script type="text/javascript">
-// 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+// if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 //   $('#batch').selectpicker('mobile');
 // }
 </script>

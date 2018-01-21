@@ -15,7 +15,11 @@
 				{% for user in users %}
 				<div class="card card-1">
 					<center>
-						<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+						{% if user.ppic %}
+							<img src="/media/{{user.ppic}}" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+						{% else %}
+							<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+						{% endif %}
 					</center>
 					<hr>
 					<center>

@@ -11,6 +11,9 @@ from .models import User
 from django.core.mail import send_mail
 import _thread
 import hashlib
+from django.core.files.storage import default_storage
+from django.utils.datastructures import MultiValueDictKeyError
+from datetime import datetime
 
 
 def send_email(subject, message, html_message, sender, recipients):
@@ -80,6 +83,7 @@ def pmt_member_user(request, email):
 		user["contact"] = user_q.contact
 		user["batch"] = user_q.batch
 		user["quote"] = user_q.quote
+		user["ppic"] = user_q.ppic
 
 		return Response({"user" : user, "status": 200}, status=200)
 	except User.DoesNotExist:
@@ -121,69 +125,120 @@ def login(request):
 			return Response({"message": "User does not exist", "status": 400}, status=400)
 
 @api_view(['GET', 'POST', 'PUT'])
-@parser_classes((JSONParser,MultiPartParser, FileUploadParser))
+# @parser_classes((JSONParser,MultiPartParser, FileUploadParser))
 def register(request):
 	print("REQUEST METHOD", request.method)
 	try:
 		if request.method == "POST":
-			print("POST request(Registration)")
-			# print(request.POST)
-			print("REGISTER DATA: ", request.data) # True
-			# print(request.FILES)
-
-			# del request.data["ppic"]
-			print("After removal: ", request.data)
-			user = None
-			rough_text = "chfcRjhdIqiyeSdg64HffjI234K74sdoasyxoyuwbahntdhdhduecdggEkjhhgsre43ShwytdHkaAhdgGporrRnsfdfAqWktrNhygullI"
 			try:
-				user = User.objects.get(email=request.data["email"])
-				if user.account_confirmed:
-					print("User email found in DB and confirmed")
-					return Response({"status": 400, "message": "This email is already registered"}, status=400)
-				else:
-					print("User email found in DB and not confirmed")
+				print (request.data["thisIsRegistrationData"])
+				print("POST request(Registration)")
+				print("REGISTER DATA: ", request.data) # True
+				user = None
+				rough_text = "chfcRjhdIqiyeSdg64HffjI234K74sdoasyxoyuwbahntdhdhduecdggEkjhhgsre43ShwytdHkaAhdgGporrRnsfdfAqWktrNhygullI"
+				try:
+					user = User.objects.get(email=request.data["email"])
+					if user.account_confirmed:
+						print("User email found in DB and confirmed")
+						return Response({"status": 400, "message": "This email is already registered"}, status=400)
+					else:
+						print("User email found in DB and not confirmed")
+						print("Firing email sender thread")
+						data_email_tup = (
+							"PMT ACCOUNT RE-CONFIRMATION",
+							"",
+							"<p>Dear <b>" + user.fullname + "</b>,<br>" +
+							"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/"  + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
+							"rishikesh0014051992@gmail.com",
+							[user.email] 
+						)
+						_thread.start_new_thread(send_email, data_email_tup)
+						print("Email thread exited")
+						return Response({"status": 400, "message": "This email is already registered but not confirmed, please check your mail again"}, status=400)
+				except User.DoesNotExist:
+					print("Deleting key thisIsRegistrationData")
+					del request.data["thisIsRegistrationData"]
+					print("Now data is ", request.data)
+					user = User(**request.data)
+					user.save()
+					print(user, user.id)
 					print("Firing email sender thread")
 					data_email_tup = (
-						"PMT ACCOUNT RE-CONFIRMATION",
-						"",
-						"<p>Dear <b>" + user.fullname + "</b>,<br>" +
-						"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/"  + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
-						"rishikesh0014051992@gmail.com",
-						[user.email] 
+							"PMT ACCOUNT CONFIRMATION",
+							"",
+							"<p>Dear <b>" + user.fullname + "</b>,<br>" \
+							"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/" + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
+							"rishikesh0014051992@gmail.com",
+							[user.email] 
 					)
 					_thread.start_new_thread(send_email, data_email_tup)
 					print("Email thread exited")
-					return Response({"status": 400, "message": "This email is already registered but not confirmed, please check your mail again"}, status=400)
-			except User.DoesNotExist:
-				user = User(**request.data)
-				user.save()
-				print(user, user.id)
-				print("Firing email sender thread")
-				data_email_tup = (
-						"PMT ACCOUNT CONFIRMATION",
-						"",
-						"<p>Dear <b>" + user.fullname + "</b>,<br>" \
-						"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/" + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
-						"rishikesh0014051992@gmail.com",
-						[user.email] 
-				)
-				_thread.start_new_thread(send_email, data_email_tup)
-				print("Email thread exited")
-				return Response({"status": 200, "message": "Registration successful"}, status=200)
-		elif request.method == "PUT":
-			try:
-				print ("PROFILE UPDATE REQUEST", request.data)
-				user = User.objects.filter(email=request.data["emailLocalStoraged"])
-				print(user)
-				del request.data["emailLocalStoraged"]
-				user.update(**request.data)
-				print("Data successfully updated")
-				return Response({"status": 200, "message": "Your profile has been successfully updated"}, status=200)
-			except User.DoesNotExist:
-				return Response({"status": 400, "message": "User does not exist"}, status=200)
-			except Exception as e:
-				print(e)
-				return Response({"status": 500, "message": "Internal server error"}, status=200)
+					return Response({"status": 200, "message": "Registration successful"}, status=200)
+			except MultiValueDictKeyError:
+				print("UPDATE DATA FILES");
+				print(request.FILES, "\n")
+				print("UPDATE DATA")
+				print(request.data, "\n")
+
+				try:
+					print ("PROFILE UPDATE REQUEST ", request.data)
+					email =  request.data["email"]
+					print ("EMAIL ", email)
+					
+					contact = request.data["contact"]
+					print ("CONTACT ", contact)
+					
+					fullname = request.data["fullname"]
+					print ("FULLNAME ", fullname)
+
+					password =  request.data["password"]
+					print ("PASSWORD ", password)
+
+					quote =  request.data["quote"]
+					print ("QUOTE ", quote)
+
+					ppic = ""
+					if request.FILES:
+						file_obj = request.FILES["ppic"]
+						print(file_obj.name, type(file_obj.name))
+						print (file_obj, type(file_obj))
+						filename = file_obj.name
+						filename = filename.replace(" ", "-")
+						lst = filename.split(".")
+						ext = lst[len(lst) - 1]
+						dt = str(datetime.now())
+						dt = dt.replace("", "")
+						ppic = email + filename + dt + "." + ext
+
+						with default_storage.open('./' + ppic, 'wb+') as destination:
+							for chunk in file_obj.chunks():
+								destination.write(chunk)
+					else:
+						print("You don't want to update profile picture")
+
+					user = User.objects.filter(email=request.data["real_email"])
+					print(user)
+					update_data = {
+						"fullname": fullname, # request.data["fullname"] will give fullname not defined
+						"email": email,
+						"contact": contact,
+						"password": password,
+						"quote": quote,
+					}
+
+					if ppic:
+						print("Updating profile pic too")
+						update_data["ppic"] = ppic
+
+					print("Updating data")
+					user.update(**update_data)
+					print("Data successfully updated")
+					return redirect("/profile/")
+				except User.DoesNotExist:
+					return redirect("/error/")
+				except Exception as e:
+					print(e)
+					return redirect("/error/")
 		elif request.method == "GET":
 			template = loader.get_template("pmt_hostel_app/register.html")
 			dt = datetime.now()
@@ -194,7 +249,7 @@ def register(request):
 			return HttpResponse(template.render(context, request))
 	except Exception as e:
 		print (e)
-		return Response({"status": 400, "message": "Server side error"}, status=400)
+		return Response({"status": 400, "message": "Server side error"}, status=200)
 
 def logout(request):
 	template = loader.get_template("pmt_hostel_app/logout.html")

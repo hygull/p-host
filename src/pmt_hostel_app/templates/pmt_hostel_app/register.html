@@ -116,7 +116,7 @@
 <script type="text/javascript">
 	function sendRegistrationData(event) {
 		event.preventDefault();
-		alert("Got Register data")
+		// alert("Got Register data")
 		
 		
 		var fullname = document.forms["form"]["fullname"].value;
@@ -175,7 +175,7 @@
 				quote: quote.trim(),
 				batch: batch.trim(),
 				// ppic: ppic.trim(),
-				
+				thisIsRegistrationData: true
 			}),
 			// body: formData
 		})
@@ -187,7 +187,7 @@
 				location.href = "/success/"
 				return true
 			} else {
-				location.reload()
+				location.href = "/error/"
 				return false
 			}
 			
