@@ -13,7 +13,12 @@
 			<hr>
 			<div class="card card-1">
 				<center>
-					<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> <br>
+					{% if user.ppic %}
+						<img src="/media/{{user.ppic}}" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+					{% else %}
+						<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" /> 
+					{% endif %}
+					<br>
 					<small><i class="fa fa-comments-o" aria-hidden="true"></i>  Quote &raquo; <span id="span-quote">"{{user.quote}}"</span></small>
 				</center>
 				<hr>
@@ -23,7 +28,13 @@
 					<span class="span-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>  {{ user.email }} </span><br>
 					<span class="span-contact"><i class="fa fa-mobile" aria-hidden="true"></i> +91 {{ user.contact }}</span><br/>
 					<hr>
-					<span class="span-batch">Member of <b>{{user.batch}}</b> bacth</span>
+					<span class="span-batch"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Member of <b>{{user.batch}}</b> bacth</span><br>
+					{% if user.account_confirmed %} 
+					<i class="fa fa-check" aria-hidden="true"  style="color:green"></i>  <span class="span-batch" style="font-style: italic;">Email is verified</span>
+					{% else %}
+					<i class="fa fa-times" aria-hidden="true" style="color: red; "></i>
+					<span lass="span-batch" style="font-style: italic;">Email is not yet verified</span>
+					{% endif %}
 				</center>
 					
 			</div>
@@ -92,7 +103,7 @@
   background: #fff;
   border-radius: 2px;
   display: inline-block;
-  height: 300px;
+  height: 310px;
   margin-bottom: 1rem;
   position: relative;
   width: 100%;

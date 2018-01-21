@@ -5,12 +5,20 @@
 <div class="container">
 	{% verbatim %}
 	<div class="row" ng-app="myApp" ng-controller="myCtrl">
+		<div class="col-lg-4 col-lg-offset-4 col-xs-12" ng-show="user.account_confirmed === true">
+			
+			<div class="alert alert-warning alert-dismissable fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    <strong>Warning!</strong> You have not conifmed your email
+			</div>
+			
+		</div>
+
 		<div class="col-lg-4 col-lg-offset-4 col-xs-12">
 			<center>
 					<h3><i class="fa fa-snowflake-o" aria-hidden="true"></i> Professional PMT profile</h3>
 					<!-- <h4 id="span-brief"><i class="fa fa-object-group" aria-hidden="true"></i> Chhattisgarh</h4> -->
 
-					
 			</center>
 			<hr>
 			<div class="card card-1">
@@ -57,7 +65,7 @@
 					<hr>
 				</p>
 			</div> -->
-
+		
 	</div>
 	{% endverbatim %}
 </div>
@@ -144,9 +152,9 @@
 				    $http({
 				    	url: "/api/pmt-member/" + data.email + "/",	// Don't forget to use /en/ otherwise GET method not allowed
 				    	method: "POST",
+				    	"X-CSRFToken": "{{ csrf_token }}",
 				    	headers: {
 				    		'Content-Type': 'application/x-www-form-urlencoded',
-				    		
 				    	}
 				    	
 				    })

@@ -56,21 +56,21 @@ def pmt_member(request, id):
 	except User.DoesNotExist:
 		return redirect("/error/")
 
-@api_view(["POST"])
-def pmt_member_user(request, email):
-	user = {}
-	try:
-		print(id, type(id))
-		user_q = User.objects.get(email=email)
-		user["fullname"] = user_q.fullname
-		user["email"] = user_q.email 
-		user["contact"] = user_q.contact
-		user["batch"] = user_q.batch
-		user["quote"] = user_q.batch 
+# @api_view(["POST"])
+# def pmt_member_user(request, email):
+# 	user = {}
+# 	try:
+# 		print(id, type(id))
+# 		user_q = User.objects.get(email=email)
+# 		user["fullname"] = user_q.fullname
+# 		user["email"] = user_q.email 
+# 		user["contact"] = user_q.contact
+# 		user["batch"] = user_q.batch
+# 		user["quote"] = user_q.batch 
 
-		return Response({"user" : user, "status": 200}, status=200)
-	except User.DoesNotExist:
-		return Response({"message": "User does not exist", "status": 400}, status=200)
+# 		return Response({"user" : user, "status": 200}, status=200)
+# 	except User.DoesNotExist:
+# 		return Response({"message": "User does not exist", "status": 400}, status=200)
 
 @api_view(["POST"])
 def pmt_member_user(request, email):
@@ -84,6 +84,7 @@ def pmt_member_user(request, email):
 		user["batch"] = user_q.batch
 		user["quote"] = user_q.quote
 		user["ppic"] = user_q.ppic
+		user['account_confirmed'] = user_q.account_confirmed
 
 		return Response({"user" : user, "status": 200}, status=200)
 	except User.DoesNotExist:
