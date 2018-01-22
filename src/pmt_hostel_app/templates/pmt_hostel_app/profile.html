@@ -5,11 +5,12 @@
 <div class="container">
 	{% verbatim %}
 	<div class="row" ng-app="myApp" ng-controller="myCtrl">
-		<div class="col-lg-4 col-lg-offset-4 col-xs-12" ng-show="user.account_confirmed === true">
+		<div class="col-lg-4 col-lg-offset-4 col-xs-12" ng-show="user.account_confirmed === false">
 			
-			<div class="alert alert-warning alert-dismissable fade in">
+			<div class="alert alert-danger alert-dismissable fade in">
 			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			    <strong>Warning!</strong> You have not conifmed your email
+			    <strong>Warning!</strong> You have not conifmed your email.<br>
+			    <strong><a href="#" onclick="sendConfirmationEmail()"> Click here</a></strong> for confirmation mail
 			</div>
 			
 		</div>
@@ -45,6 +46,8 @@
 				<center>
 				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br><br>
 					<p id="message">Edit profile to add your address, profile pic etc.</p>	
+					<br>
+					<hr>
 				</center>
 			</div>
 			
@@ -176,6 +179,40 @@
 			location.href = "/login/"
 		}
 	})
+
+
+	function sendConfirmationEmail() {
+		if(localStorage.getItem("pmtBoysHostelData")) {
+			var data = JSON.parse(localStorage.getItem("pmtBoysHostelData"))
+			console.log("Confirmation page's data", data)
+			var email = data.email
+			var pk = data.userId
+			var fullname = data.fullName
+			var obj = {
+					"fullname": fullname, "email": email, "pk": pk
+			}
+			console.log("Data, ", obj)
+			fetch("/api/send-confirmation-email/", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(obj)
+			})
+			.then(response => response.json())
+			.then(response => {
+				if(response.status == 200 ) {
+					alert(response.message)
+				}
+			})
+			.catch(error => {
+				console.log("" + error)
+				location.href = "/error/"
+			})
+		} else {
+			location.href = "/login/"
+		}
+	}
 </script>
 
 {% endblock %}

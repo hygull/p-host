@@ -20,10 +20,11 @@ urlpatterns = [
 	path("st_index2/", views.st_index, name="st_index2"),
 	path("success/", views.success, name="success"),
 	path("error/", views.error, name="error"),
-
+	path("forgot-password/", views.forgot_password, name="forgot-password"),
 	path("email-confirmation/chfcRjhdIqiyeSdg64HffjI234K74sdoasyxoyuwbahntdhdhduecdggEkjhhgsre43ShwytdHkaAhdgGporrRnsfdfAqWktrNhygullI/<int:pk>/<str:email_md5>/<str:email>/",
 		views.email_confirmation, name="email-confirmation"
 	),
+	path("api/send-confirmation-email/", views.send_confirmation_email, name="send-confirmation-email"),
 
 	re_path(r'^api-auth/', include('rest_framework.urls')),
 ]

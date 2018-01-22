@@ -27,14 +27,14 @@
         <!--HOME-->
         {% if "/" == request.path %}
         <li class="active text-center">
-            <a href="/" data-toggle="tooltip" title="Home" data-placement="bottom">
+            <a href="/">
               <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true">
               </i>
             </a>
         </li>
         {% else %}
         <li class="text-center">
-            <a href="/" data-toggle="tooltip" title="Home" data-placement="bottom">
+            <a href="/">
               <i class="fa fa-home" style="font-size:25px; padding-left: 5px; padding-right: 5px; height:30px" aria-hidden="true">
               </i>
             </a>
@@ -44,13 +44,13 @@
         <!--MEMBERS-->
         {% if "/members/" == request.path %}
         <li class="active text-center">
-          <a href="/members/" data-toggle="tooltip" title="Members"  data-placement="bottom">
+          <a href="/members/">
             <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
         <li class="text-center">
-          <a href="/members/" data-toggle="tooltip" title="Members"  data-placement="bottom">
+          <a href="/members/">
             <i class="fa fa-users" style="font-size:25px; padding-left: 5px; padding-right: 5px;" aria-hidden="true"></i>
           </a>
         </li>
@@ -59,13 +59,13 @@
         <!--CONTACT-->
         {% if "/contact/" == request.path %}
         <li class="active text-center">
-          <a class="nav-link" href="/contact/"  data-toggle="tooltip" title="Contact"  data-placement="bottom">
+          <a class="nav-link" href="/contact/">
               <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
             </a>
         </li>
         {% else %}
         <li class="text-center">
-          <a class="nav-link" href="/contact/"  data-toggle="tooltip" title="Contact"  data-placement="bottom">
+          <a class="nav-link" href="/contact/">
               <i class="fa fa-volume-control-phone" style="font-size:25px; padding-left: 5px; padding-right: 5px;" aria-hidden="true"></i>
             </a>
         </li>
@@ -74,13 +74,13 @@
         <!--ALL POSTS-->
         {% if "/posts/" == request.path %}
         <li class="active text-center">
-          <a class="nav-link" href="/posts/"  data-toggle="tooltip" title="All posts"  data-placement="bottom">
+          <a class="nav-link" href="/posts/">
               <i class="fa fa-folder-open" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
             </a>
         </li>
         {% else %}
         <li class="text-center">
-          <a class="nav-link" href="/posts/"  data-toggle="tooltip" title="All posts"  data-placement="bottom">
+          <a class="nav-link" href="/posts/">
               <i class="fa fa-folder-open" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
             </a>
         </li>
@@ -107,13 +107,13 @@
         <!--REGISTER-->
         {% if request.path == "/register/" %}
         <li class="active text-center" style="display: none" id="pmt-register">
-          <a href="/register/" data-toggle="tooltip" title="Register"  data-placement="bottom">
+          <a href="/register/" >
              <i class="fa fa-user-plus" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
         <li class="text-center" style="display: none" id="pmt-register">
-          <a href="/register/" data-toggle="tooltip" title="Register"  data-placement="bottom">
+          <a href="/register/" >
              <i class="fa fa-user-plus" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
           </a>
         </li>
@@ -122,13 +122,13 @@
         <!--LOGIN-->
         {% if request.path == "/login/" %}
         <li class="text-center active" style="display: none" id="pmt-login">
-          <a href="/login/" data-toggle="tooltip" title="Login"  data-placement="bottom">
+          <a href="/login/" >
             <i class="fa fa-sign-in" style="font-size:25px; padding-left: 5px; padding-right: 5px; height: 30px" aria-hidden="true"></i>
           </a>
         </li>
         {% else %}
         <li class="text-center" style="display: none" id="pmt-login">
-          <a href="/login/" data-toggle="tooltip" title="Login"  data-placement="bottom">
+          <a href="/login/">
             <i class="fa fa-sign-in" style="font-size:25px; padding-left: 5px; padding-right: 5px" aria-hidden="true"></i>
           </a>
         </li>
@@ -144,12 +144,12 @@
          </a>
           <ul class="dropdown-menu">
             <li class="text-center"><a href="/profile/">Profile</a></li>
-            <li class="text-center"><a href="/posts/" >Posts</a></li>
+            <li class="text-center"><a href="#settings" >Settings</a></li>
              
             <li role="separator text-center" class="divider"></li>
             <li class="dropdown-header text-center">PMT Hostel</li>
-            <li class="text-center"><a href="javascript:void(0)">Committee</a></li>
-            <li class="text-center"><a href="javascript:void(0)">Achievements</a></li>
+            <li class="text-center"><a href="#committee">Committee</a></li>
+            <li class="text-center"><a href="#achievements">Achievements</a></li>
           </ul>
         </li>
         {% else %}

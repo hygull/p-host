@@ -15,17 +15,46 @@ from django.core.files.storage import default_storage
 from django.utils.datastructures import MultiValueDictKeyError
 from datetime import datetime
 
+# host_name = "127.0.0.1:8000"
+host_name = "pmtboyshostelraipur.pythonanywhere.com"
+sender = "rishikesh0014051992@gmail.com"
 
 def send_email(subject, message, html_message, sender, recipients):
+	print("SENDING MAIL: ", [
+		subject, message, html_message, sender, recipients
+	])
 	send_mail(
 	    subject,
 	    message,
 	    sender,
 	    recipients,
-	    fail_silently=True,
+	    fail_silently=False,
 	    html_message = html_message
 	)
 	print("Email thread is exiting")
+
+@api_view(["POST", "GET"])
+def forgot_password(request):
+	if request.method == "GET":
+		template = loader.get_template("pmt_hostel_app/forgot-password.html")
+		context = {}
+		return HttpResponse(template.render(context, request))
+	elif request.method == "POST":
+		try:
+			print(request.data)
+			user = User.objects.get(email=request.data["email"])
+			data_email_tup = (
+								"PMT ACCOUNT - REQUEST FOR FORGOTTEN PASSWORD",
+								"",
+								"<p>Dear <b>" + user.fullname + "</b>,<br>" \
+								"Your PMT account's password is: <span style='color:green; font-weight:bold'>" + user.password + "</span>",
+								sender,
+								[user.email] 
+							)
+			_thread.start_new_thread(send_email, data_email_tup)
+			return Response({"status": 200, "message": "Dear " + user.fullname + ", we successfully mailed your password"}, status=200)
+		except User.DoesNotExist:
+			return Response({"status": 400, "message": "Email does not exist in our PMT account"}, status=200)
 
 def get_url(email):
 	email_md5 = hashlib.md5(email.encode('utf-8')).hexdigest()
@@ -120,7 +149,7 @@ def login(request):
 		try:
 			user = User.objects.get(**request.data)
 			print("GOT user as ", user.fullname)
-			return Response({"message": "Successfully logged in", "status": 200, "usedId": user.pk, "email": user.email}, status=200)
+			return Response({"message": "Successfully logged in", "status": 200, "userId": user.pk, "email": user.email, "ppic": user.ppic, "fullName": user.fullname}, status=200)
 		except User.DoesNotExist:
 			print("Could not found user")
 			return Response({"message": "User does not exist", "status": 400}, status=400)
@@ -149,8 +178,8 @@ def register(request):
 							"PMT ACCOUNT RE-CONFIRMATION",
 							"",
 							"<p>Dear <b>" + user.fullname + "</b>,<br>" +
-							"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/"  + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
-							"rishikesh0014051992@gmail.com",
+							"Click <a href='http://" + host_name + "/email-confirmation/" + rough_text + "/"  + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
+							sender,
 							[user.email] 
 						)
 						_thread.start_new_thread(send_email, data_email_tup)
@@ -168,8 +197,8 @@ def register(request):
 							"PMT ACCOUNT CONFIRMATION",
 							"",
 							"<p>Dear <b>" + user.fullname + "</b>,<br>" \
-							"Click <a href='http://127.0.0.1:8000/email-confirmation/" + rough_text + "/" + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
-							"rishikesh0014051992@gmail.com",
+							"Click <a href='http://" + host_name + "/email-confirmation/" + rough_text + "/" + str(user.pk) + "/" + get_url(user.email) + "/" + user.email + "/'>here</a> to confirm/activate your PMT account.",
+							sender,
 							[user.email] 
 					)
 					_thread.start_new_thread(send_email, data_email_tup)
@@ -307,3 +336,20 @@ def email_confirmation(request, pk, email, email_md5):
 	else:
 		print ("Email and its encoded value does not match")
 		return redirect("/error/")
+
+@api_view(["POST"])
+def send_confirmation_email(request):
+	print("CONF. EMAIL REQ. for ", request.data)
+	user = request.data
+	print(type(user), user)
+	rough_text = "chfcRjhdIqiyeSdg64HffjI234K74sdoasyxoyuwbahntdhdhduecdggEkjhhgsre43ShwytdHkaAhdgGporrRnsfdfAqWktrNhygullI"
+	data_email_tup = (
+							"PMT ACCOUNT RE-CONFIRMATION",
+							"",
+							"Dear <b>" + user["fullname"] + "</b>,<br>" +
+							"Click <a href='http://" + host_name + "/email-confirmation/" + rough_text + "/"  + str(user["pk"]) + "/" + get_url(user["email"]) + "/" + user["email"] + "/'>here</a> to confirm/activate your PMT account.",
+							sender,
+							[user["email"]] 
+						)
+	_thread.start_new_thread(send_email, data_email_tup)
+	return Response({"message": "We have successfully sent you the confirmation mail", "status": 200}, status=200)

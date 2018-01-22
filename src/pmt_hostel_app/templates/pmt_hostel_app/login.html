@@ -30,7 +30,7 @@
 		    </form>
 	      </div>
 	      <div class="panel-footer text-center">
-	      		<a href="/forgot-passoword/"><i class="fa fa-paint-brush" aria-hidden="true"></i> Forgot password of <b>PMT account</b> </a><br>
+	      		<a href="/forgot-password/"><i class="fa fa-paint-brush" aria-hidden="true"></i> Forgot password of <b>PMT account</b> </a><br>
 	      		<a href="/register/"><i class="fa fa-user-plus" aria-hidden="true"></i> Currently don't have <b>PMT account</b> </a>
 	      </div>
 	    </div>
@@ -101,8 +101,16 @@
 
 			if(response.status == 200) {
 				localStorage.clear()
+				var yourEmail = response.email
+				var yourUserId = response.userId
+				var yourPpic = response.ppic
+				var yourFullName = response.fullName
+
 				var obj = {
-					email: response.email
+					email: yourEmail,
+					userId: yourUserId,
+					ppic: yourPpic,
+					"fullName": yourFullName 
 				}
 				localStorage.setItem("pmtBoysHostelData", JSON.stringify(obj))
 
