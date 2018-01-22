@@ -15,8 +15,8 @@ from django.core.files.storage import default_storage
 from django.utils.datastructures import MultiValueDictKeyError
 from datetime import datetime
 
-# host_name = "127.0.0.1:8000"
-host_name = "pmtboyshostelraipur.pythonanywhere.com"
+host_name = "127.0.0.1:8000"
+# host_name = "pmtboyshostelraipur.pythonanywhere.com"
 sender = "rishikesh0014051992@gmail.com"
 
 def send_email(subject, message, html_message, sender, recipients):
