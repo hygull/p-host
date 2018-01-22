@@ -77,7 +77,7 @@
 <script type="text/javascript">
 	function sendLoginData(event) {
 		event.preventDefault();
-		alert("Great");
+		// alert("Great");
 		var email = document.forms["form"]["email"].value;
 		var password = document.forms["form"]["password"].value;
 		console.log("Email: " + email)
@@ -113,8 +113,9 @@
 					"fullName": yourFullName 
 				}
 				localStorage.setItem("pmtBoysHostelData", JSON.stringify(obj))
-
-				alert(localStorage.getItem("pmtBoysHostelData"))
+				console.log("Setting profile pic")
+				document.getElementById("profilePic").src = "/media/" + yourPpic;
+				// alert(localStorage.getItem("pmtBoysHostelData"))
 				location.href = "/profile/"
 			}
 			else {

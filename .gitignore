@@ -100,7 +100,4 @@ ENV/
 # mypy
 .mypy_cache/
 db.sqlite3
-media/
-media/*
-static/
-static/*
+

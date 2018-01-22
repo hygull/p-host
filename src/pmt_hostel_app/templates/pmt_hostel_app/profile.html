@@ -22,7 +22,14 @@
 
 			</center>
 			<hr>
+			<center>
+				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br>
+					<!-- <p id="message">Edit profile to add your address, profile pic etc.</p>	
+					<br>
+					<hr> -->
+				</center>
 			<div class="card card-1">
+
 				<center>
 					
 						<img src="https://cdn4.iconfinder.com/data/icons/rcons-user/32/child_boy-128.png" style="height:80px; display: inline; padding-top: 3px" class="img-responsive img-circle" ng-show="user.ppic === ''"/>
@@ -38,17 +45,12 @@
 					<span class="span-name"><i class="fa fa-address-book-o" aria-hidden="true"></i> {{ user.fullname }}</span><br>
 					<span class="span-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>  {{ user.email }} </span><br>
 					<span class="span-contact"><i class="fa fa-mobile" aria-hidden="true"></i> +91 {{ user.contact }}</span><br/>
-					<hr>
+					<br>
 					<span class="span-batch">Member of <b>{{user.batch}}</b> bacth</span>
 				</center>
 				<br>
 
-				<center>
-				<a href="/profile/edit/{{user.email}}/" class="btn btn-success btn-block" id="explore"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a><br><br>
-					<p id="message">Edit profile to add your address, profile pic etc.</p>	
-					<br>
-					<hr>
-				</center>
+				
 			</div>
 			
 			
@@ -115,11 +117,14 @@
   background: #fff;
   border-radius: 2px;
   display: inline-block;
-  height: 300px;
+  height: auto;
   margin-bottom: 1rem;
   position: relative;
   width: 100%;
   padding-top: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
 }
 
 .card-1 {
@@ -191,7 +196,7 @@
 			var obj = {
 					"fullname": fullname, "email": email, "pk": pk
 			}
-			console.log("Data, ", obj)
+			console.log("Data, ", data)
 			fetch("/api/send-confirmation-email/", {
 				method: "POST",
 				headers: {
