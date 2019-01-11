@@ -64,6 +64,11 @@ def get_url(email):
 def demo(request):
     return HttpResponse("<center><h1>Hello PMT Hostelers</h1></center>")
 
+def auth(request):
+	template = loader.get_template("pmt_hostel_app/auth.html")
+	context = {}
+	return HttpResponse(template.render(context, request))
+
 def index(request):
 	template = loader.get_template("pmt_hostel_app/index.html")
 	context = {}
@@ -74,6 +79,10 @@ def members(request):
 	users = User.objects.all()
 	context = {"users": users, "total_users": len(users)}
 	return HttpResponse(template.render(context, request))
+
+def callback(request):
+	template = loader.get_template("pmt_hostel_app/callback.html")
+	return HttpResponse(template.render({}, request))
 
 def pmt_member(request, id):
 	try:

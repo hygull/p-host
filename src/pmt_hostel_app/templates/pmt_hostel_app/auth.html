@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HyGo</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="refresh" content="300">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Rishikesh Agrawani" >
+        <meta name= "description" content="HyGo, a shortcut for High,Goal & Golang. A website developed using Django web framework by Rishikesh Agrawani. This website published on the internet on 26 January 2017. HyGo is basically for Golang programmers and the programmers who willing to learn Goalng. This site also hosts another website named Servirall. As we know entertainment is an important part of life as it removes the work pressure & tension. So here some videos are available which are motivational, heart touching & nice.">
+        <meta name="author" content="Rishikesh Agrawani" >
+        <meta name="keywords" content="Servirall,servirall,rishikesh67,motivational videos,heart touching videos, nice english music videos, Servirall Golang,servirall Go, servirall Golang, servirall rishikesh, Rishikesh Agrawani, rishikesh agrawani, agrawani,Hygull, hygull,hygo,HyGo">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <style>
+            #small_created_at{
+              color:green;
+              font-family: helvetica;
+            }
+
+            a{
+              text-decoration: none;
+              text-shadow: gray;
+            }
+            #clicks{
+              color:red;
+              font-size: 50;
+
+            }
+            #message{
+              color:gray;
+              font-size: 30;
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="icon" type="image/gif/png" href="https://cdn2.iconfinder.com/data/icons/goodreads-1/512/goodreads-round-4-256.png">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <style>
+  @media only screen and (max-width: 768px){
+
+
+    #profile_img{
+      height: 10%;
+      width: 10%;
+    }
+    .image_gopher_right{
+      width: 100%;
+      height: 100%;
+    }
+    .go_logo{
+      width: 30%;
+      height: 30%;
+    }
+    .image{
+      width: 25%;
+    }
+    button{
+      width: 10%;
+    }
+         #column1{
+        display: none;
+        visibility: hidden;
+      }
+  }
+  li{
+    text-align: center;
+  }
+
+
+</style>
+    </head>
+    <body>
+        <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=183960815416449";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <!--body start-->
+        <!-- <nav class="navbar navbar-inverse"><div class="container-fluid"><div class="navbar-header"><a class="navbar-brand" href="#">hygull.com</a></div><ul class="nav navbar-nav"><li class="active"><a href="/">Home</a></li><li><a href="/blogs/">Blogs</a></li><li><a href="/posts/">Posts</a></li><li><a href="/aboutus/">About</a></li><li><a id='login' href='/accounts/login/'>Login</a></li><li><a href="/dtl_home/">Servirall</a></li><li><a href="/posts/videos/">Videos</a></li>
+
+    </ul>
+
+  </div></nav>
+ -->
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-ravelry" aria-hidden="true"></i> &nbsp;HyGo
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <!-- <ul class="nav navbar-nav"><li class="active"><a href="#">Home</a></li><li><a href="/dtl_home/aboutus/">About</a></li><li><a href="#">Contact</a></li><li><a href="/">Golang</a></li>
+          </ul><ul class="nav navbar-nav navbar-right"><li class="active"><a href="#" target="_blank">Admission</a></li><li><a href="https://www.practo.com/" target="_blank">Doctor Booking</a></li><li><a href="https://ifsc.bankifsccode.com/" target="_blank">Bank details</a></li>
+          </ul> -->
+<ul class="nav navbar-nav">
+    <li >
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <a href="/blogs/">Blogs</a>
+    </li>
+    <li>
+        <a href="/posts/">Posts</a>
+    </li>
+    <li>
+        <a href="/aboutus/">About</a>
+    </li>
+    <li>
+        <a id='login' href='/accounts/login/'>Login</a>
+    </li>
+    <li>
+        <a href="/dtl_home/">Servirall</a>
+    </li>
+    <li>
+        <a href="/posts/videos/">Videos</a>
+    </li>
+    <li>
+        <a href="/login2/"> Google Info</a>
+    </li>
+    <li>
+        <a href="/blogs/supermarket/">PIL</a>
+    </li>
+    <li>
+        <a href="/image-scrapper/">PicScrapper</a>
+    </li>
+    <li>
+        <a href="/hygull/api/" target="_blank">Rest API
+        </li>
+    </ul>
+</div>
+<!--/.nav-collapse -->
+      
+</div>
+</nav>
+<div class="container">
+    <div class="row">
+        <!--row1 start-->
+        <!--column1 start-->
+        <div id="column1" class="col-md-2 col-xs-12 col-sm-2 col-lg-2 text-center">
+            <!--column1 start-->
+            <div class="fb-like" data-href="http://rishikesh67.pythonanywhere.com/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <br>
+            <hr>
+            <img src="/static/img/village.jpg" class="img-responsive"/>
+            <br>
+            <img id="profile_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_r0siy6hK7ImaOwkR_E8Ay1eWJGcxNwXcrbou3k3KQrL1XC42tQ" class="img-circle" alt="Rishikesh" width="50%" height="50%">
+            <br>
+            <br>
+            <!-- 
+                  <a onclick="window.open('https://www.facebook.com/rishikesh.agrawani', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');"><img src="https://cdn4.iconfinder.com/data/icons/green-social-media-icons/744/social_social_media_social_network_facebook_logotype_network-32.png" class="img-circle" alt="Facebook" >
+                  </a> -->
+            <a onclick="window.open('https://www.linkedin.com/in/rishikesh-agrawani-0358ba119?trk=nav_responsive_tab_profile', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');">
+                <img src="https://cdn4.iconfinder.com/data/icons/green-social-media-icons/744/social_media_social_network_logo_logotype_linkedin_logos-32.png" class="img-circle" alt="Linkedin" >
+                  
+            </a>
+            <!-- 
+                  <a onclick="window.open('https://twitter.com/RishiAndCodeEx', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');"><img src="
+                  https://cdn0.iconfinder.com/data/icons/green-social-media-icons/744/social_media_social_network_logo_twitter_logotype_logo-32.png" class="img-circle" alt="Twitter" >
+                  </a> -->
+            <a onclick="window.open('https://plus.google.com/u/0/113992208941719062433', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');">
+                <img src="https://cdn4.iconfinder.com/data/icons/green-social-media-icons/744/social_media_social_network_logo_logotype_logos_google_plus-32.png" class="img-circle" alt="Google+" >
+                  
+            </a>
+            <br>
+            <hr>
+            <h3 style="color:green;">Wow!!!</h3>
+            <h4>
+                <a href='https://golang.org/' target="_blank">Go</a>
+            </h4>
+            <img class="image" src="https://s-media-cache-ak0.pinimg.com/originals/bc/75/22/bc75225ef044d29d1f2d1c051d9b8063.gif" class="img-circle img-responsive" alt="Rishikesh" width="100%" height="100%">
+            <br>
+            <hr>
+            <a href='https://golang.org/doc/faq' target="_blank">Frequently asked questions</a>
+            <br>
+            <hr>
+            <a href='https://git-scm.com/downloads' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-download" aria-hidden="true"></i> &nbsp;Git
+            </a>
+            <hr>
+            <a href='https://golang.org/dl/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-download" aria-hidden="true"></i> &nbsp;Go comipler
+            </a>
+            <hr>
+            <a href='https://www.sublimetext.com/3' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-download" aria-hidden="true"></i> &nbsp;Sublime text 3
+            </a>
+            <hr>
+            <a href='https://atom.io' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-download" aria-hidden="true"></i> &nbsp;Atom for MAC
+            </a>
+            <hr>
+            <span style="color:gray;font-size: 20px">Databases</span>
+            <br>
+            <a href=' https://dev.mysql.com/downloads/mysql/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-download" aria-hidden="true"></i> &nbsp;MySQL
+            </a>
+            <hr>
+            <a href='https://github.com/golang/go/wiki/Learn' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-sign-language"></i> &nbsp; MySQL installation
+            </a>
+            <br>
+            <hr>
+            <span style="color:gray;font-size: 20px">Web frameworks</span>
+            <br>
+            <a href='http://iris-go.com/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-eyedropper" aria-hidden="true"></i> &nbsp; Iris
+            </a>
+            <hr>
+            <a href='https://echo.labstack.com/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-shield" aria-hidden="true"></i> &nbsp; Echo
+            </a>
+            <hr>
+            <a href='https://beego.me/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-microchip" aria-hidden="true"></i> &nbsp; Beego
+            </a>
+            <hr>
+            <a href='https://github.com/go-martini/martini' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-sitemap" aria-hidden="true"></i> &nbsp; Martini
+            </a>
+            <br>
+
+          
+        </div>
+        <!--column1 end-->
+        <!--column2 start-->
+        <div class="col-md-7 col-xs-12 col-sm-7 col-lg-7 text-center">
+            <!--column2 start-->
+            <span id="clicks"> 3351 clicks</span>
+            <span id="message"> after 20 June 2017</span>
+            <h2 style="color:gray">Hi 
+                <span style='color:green;font-family:sans-serif;'>Dear!!!</span>
+            </h2>
+            <hr>
+            <!--  <span style='color:gray;font-weight: bold;'>View all gists at</span> &nbsp;<a href="https://gist.github.com/hygull" target="_blank">https://www.gists.github.com/hygull</a> -->
+            <h3 style="font-weight: bold;font-family: tahoma;color: green;">Wecome to HyGo</h3>
+            <hr>
+            <div ng-app="myApp" ng-controller="customersCtrl">
+                <span ng-repeat="obj in myDataList" >
+                    <!-
+                    <i class="fa fa-plus" aria-hidden="true" ng-if="$index%2 == 0"></i>
+                    <i class="fa fa-qrcode" aria-hidden="true" ng-if="$index % 2!=0"></i>
+                    <a href="{{obj.html_url}}" style='text-decoration: none;' target="_blank" role='button'> 
+                      
+                       {{ obj.description }}</a>
+                    <br>
+                    <small id='small_created_at'>
+                        <span style='font-family: helvetica;color: gray;font-weight: bold;'>Posted on &raquo; </span>{{ obj.created_at }}
+                    </small>
+                    <hr>
+                      
+                </span>
+            </div>
+        </div>
+        <!--column2 end-->
+        <!--column2 end-->
+        <!--column3 start-->
+        <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3 text-center">
+            <a class="btn btn-block btn-info" href="/posts/create/" role="button">
+                <h4>
+                    <i class="fa fa-book" aria-hidden="true"></i> &nbsp;
+                    <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>&nbsp;Write a new post
+                </h4>
+            </a>
+            <br>
+            <a class="btn btn-block btn-info" href="/posts/videos/create/" role="button">
+                <h4>
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;Post a video
+                </h4>
+            </a>
+            <br>
+            <div>
+                <img src="/static/img/cute_child.jpg" class="img-responsive">
+                    
+            </div>
+            <hr>
+            <div class="panel panel-success">
+                <div class="panel-heading">&nbsp;
+                           
+                    <i class="fa fa-terminal" aria-hidden="true"></i>&nbsp;
+                    <i class="fa fa-users" aria-hidden="true"></i> &nbsp;
+                    <i class="fa fa-plane" aria-hidden="true"></i> 
+                        &nbsp;
+                    <img class='go_logo' src="https://cdn4.iconfinder.com/data/icons/business-life-glyph/64/achievement_work_business_seo_agency_work-512.png"  class="img-circle" alt="Gologo" width="40%" height="40%" >&nbsp;
+                       
+                    <i class="fa fa-sign-language" aria-hidden="true"></i> &nbsp;
+                    <i class="fa fa-magnet" aria-hidden="true"></i> &nbsp;
+                    <i class="fa fa-hourglass" aria-hidden="true"></i>
+                </div>
+                <div class="panel-body">
+                    <h6 style="color:green;font-family: tahoma;text-align: center;">Go is great. 
+                        <br>It has Nice error handling concept, variable declaration syntaxes, concurrency and many more
+                    </h6>
+                </div>
+            </div>
+            <hr>
+            <img id='image_gopher_right' src="http://lerablog.org/wp-content/uploads/2013/12/Gophers.jpg" class="img-rounded" alt="Gophers" width="100%" height="100%">
+            <hr>
+            <span style="color:gray;font-size: 20px">References</span>
+            <br>
+            <a href="https://www.gobyexample.com" target="_blank">gobyexample.com</a>
+            <br>
+            <a href="https://www.tutorialspoint.com/go" target="_blank">tutorialspoint.com</a>
+            <br>
+            <a href="https://www.dotnetperls.com/go" target="_blank">dotnetperls.com</a>
+            <br>
+            <a href="https://tour.golang.org/welcome/1" target="_blank">Take a tour on Golang</a>
+            <br>
+            <a href="https://talks.golang.org/2013/bestpractices.slide#1" target="_blank">Best practices on golang(slides)</a>
+            <br>
+            <hr>
+            <span style="color:gray;font-size: 20px">Nice Links for Go</span>
+            <br>
+            <a href='https://golang.org/doc/code.html' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; How to write Go code
+            </a>
+            <hr>
+            <a href='https://github.com/golang/go/wiki/Learn' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-book" aria-hidden="true"></i> &nbsp; Github notes
+            </a>
+            <br>
+            <hr>
+            <span style="color:gray;font-size: 20px">Python Resources</span>
+            <br>
+            <a href='http://www.codeconquest.com/blog/the-50-best-websites-to-learn-python/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i> &nbsp; 50 best websites to learn Python
+            </a>
+            <div class="list-group" id='python_resources_list'>
+                <a href="https://www.tutorialspoint.com/python/" target="_blank" class="list-group-item list-group-item-info"> &nbsp;
+                    <img src="https://cdn2.iconfinder.com/data/icons/formats-4/140/_P-23-512.png" width='10%'>Python 2
+                </a>
+                <a href="https://www.tutorialspoint.com/python3/" target="_blank" class="list-group-item list-group-item-success">
+                    <img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/12.File-512.png" width='10%'> Pytohn 3
+                </a>
+                <a href="https://www.codecademy.com/learn/python" target="_blank" class="list-group-item list-group-item-warning">
+                    <img src="https://cdn3.iconfinder.com/data/icons/cosmo-color-education-2/40/mark_c-2-512.png" width='10%'>Codecademy (learn &amp; practice)
+                </a>
+            </div>
+            <br>
+            <hr>
+            <span style="color:gray;font-size: 20px">CSS</span>
+            <br>
+            <a href='http://learn.shayhowe.com/html-css/getting-to-know-css/' class='btn btn-success btn-block' target="_blank" role='button'>
+                <i class="fa fa-arrows" aria-hidden="true"></i> &nbsp; Getting to know CSS
+            </a>
+            <div class="list-group" id='python_resources_list'>
+                <a href="http://www.w3schools.com/css/default.asp" target="_blank" class="list-group-item list-group-item-success">
+                    <img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/12.File-512.png" width='10%'> w3Schools
+                </a>
+                <a href="http://stackoverflow.com/questions/37681169/multiple-media-queries-arent-working" target="_blank" class="list-group-item list-group-item-info"> &nbsp;
+                    <img src="https://cdn1.iconfinder.com/data/icons/file-extension-names-vol-2-1/512/33-512.png" width='10%'>Multiple media queries
+                </a>
+                <a href="http://www.w3schools.com/w3css/" target="_blank" class="list-group-item list-group-item-warning">
+                    <img src="https://cdn3.iconfinder.com/data/icons/basicolor-file-types/24/139_css_styles-512.png" width='10%' width='10%'>w3.css (Modern framework)
+                </a>
+            </div>
+        </div>
+        <!--column3 end-->
+        <!-- 
+
+           -->
+  
+    </div>
+    <!--row1 end-->
+    <!--  
+          <ul class="pager" style="text-align: center;"><li><a href="#">Next</a></li>
+          </ul>
+     -->
+</div>
+<!--container1 end-->
+<hr>
+<footer style="background-color: black;padding:4px;">
+    <p class="text-center" style="color: lightgreen;">
+        Copyright© 2017, Servirall
+        <br/>
+        Bangalore,India
+    </p>
+</footer>
+<script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function($scope, $http) {
+          var i = 1
+          // var list = []
+          $scope.myDataList = []
+          $scope.justContinue = true
+          // var justContinue = true
+          while(true){
+            console.log("Entered")
+            $http.get("https://api.github.com/users/hygull/gists?pages="+i).then(function (response) {
+                  // console.log("DATA",$scope.myDataList)
+                  $scope.myDataList =  $scope.myDataList.concat( response.data );
+                  // list = response.data
+                  // if(response.data.length==0){
+                  //   $scope.justContinue=false
+                  // }
+                  // console.log($scope.myDataList)
+                  console.log(i,"time:",$scope.myDataList.length)    
+            });
+            // if(list.length==0){
+            //       console.log("exiting")
+            //       justContinue = false
+            // } 
+            // console.log("response", res)
+            if(i==5){
+              break
+            }
+            i = i + 1
+          }
+          console.log("exiting")
+        });
+    </script>
+<!--body end-->
+</body>
+</html>

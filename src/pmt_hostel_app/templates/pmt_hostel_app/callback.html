@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Linkedin API usage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../styles/create_post.css"> -->
+
+  <link rel="stylesheet" type="text/css" href="../assets/css/emojionearea.css">
+
+  <script type="text/javascript" src="../assets/js/emojionearea.js"></script>
+
+  <style type="text/css">
+    .alert {
+       display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <h2>Auth flow</h2>
+        <br>
+        <hr>
+        <button onclick="openLinkedinAuth()" class="btn btn-success">Open</button>
+        <hr>
+        <textarea id='authorization-code' rows="7" style="width: 100%"></textarea>
+        <textarea id='access-url' rows="7" style="width: 100%"></textarea>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	function openLinkedinAuth() {
+  		alert(window.location);
+  		alert(window.locationbar);
+
+  		console.log(window.location);
+  		// let w = window.open('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=8134hzf84lhzh5&redirect_uri=http%3A%2F%2Frishikesh67.pythonanywhere.com&state=ee11cbb19052e40b07aac0ca060c23ee&scope=w_share');
+
+      let w = window.open('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=8134hzf84lhzh5&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fcallback%2F&state=ee11cbb19052e40b07aac0ca060c23ee&scope=w_share');
+
+  		alert('Paste the authorization code');
+  		console.log(w.name);
+	}
+
+
+  let accessUrl = window.location.href;
+  console.log(accessUrl);
+  console.log(typeof accessUrl);
+  let authCode = accessUrl.split('/callback/?code=')[1].split('&')[0];
+  document.getElementById('access-url').value = accessUrl;
+  document.getElementById("authorization-code").value = authCode;
+  // document.g
+
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
 	# path("", views.index, name="index"),
+	path("auth/", views.auth, name="auth"),
 	path("contact/", views.contact, name="contact"),
 	path("members/", views.members, name="members"),
 	path("pmt-member/<int:id>/", views.pmt_member, name="pmt-member"),
@@ -25,6 +26,6 @@ urlpatterns = [
 		views.email_confirmation, name="email-confirmation"
 	),
 	path("api/send-confirmation-email/", views.send_confirmation_email, name="send-confirmation-email"),
-
+	path("callback/", views.callback, name='callback'),
 	re_path(r'^api-auth/', include('rest_framework.urls')),
 ]

@@ -16,7 +16,6 @@ simple Python function (or method, in the case of class-based views).
 Django will choose a view by examining the URL that’s requested (to be precise, the part of 
 the URL after the domain name).
 
-
 ### 2
 
 Write views that actually do something¶
